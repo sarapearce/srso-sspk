@@ -1,0 +1,13 @@
+			@font-face {
+				font-family: 'optima-medium';
+				font-style: normal;
+				src: url('//client-3.sarapearce.net/wp-content/uploads/useanyfont/161212121924Optima-Medium.eot');
+				src: local('optima-medium'), url('//client-3.sarapearce.net/wp-content/uploads/useanyfont/161212121924Optima-Medium.eot') format('embedded-opentype'), url('//client-3.sarapearce.net/wp-content/uploads/useanyfont/161212121924Optima-Medium.woff') format('woff');
+			}
+            
+            .optima-medium{font-family: 'optima-medium' !important;}
+            
+						body{
+					font-family: 'optima-medium' !important;
+				}
+		

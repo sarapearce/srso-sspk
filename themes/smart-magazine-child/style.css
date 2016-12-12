@@ -12,3 +12,6 @@
  Text Domain:  smart-magazine-child
 */
 
+.underline {
+    text-decoration: underline;
+}

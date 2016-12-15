@@ -1,4 +1,5 @@
 <?php
+//
 /**
  * The header for our theme.
  *
@@ -17,23 +18,21 @@
     </head>
 
     <body <?php body_class(); ?>>
+        <!--do NOT tweak this section, it took forever to center and everything is hinged on its location-->
         <header class="main-header">
             <!-- container -->
             <div class="clearfix"></div>
             <div class="container-fluid right col-md-12 col-sm-12">
                 <div class="row">
-                    <div class="col-sm-3"></div>
-                    <span class="col-sm-6">
-                        <div class="logo img-responsive center-block">
+                    <div class="span8 center-block">
                             <?php
                             $logo = esc_url(get_theme_mod("logo-upload"));
                             ?>
                             <a href="<?php echo esc_url(home_url('/')); ?>">
-                                <?php echo (strlen($logo) > 0) ? '<img align="middle" src="' . $logo . '" alt="" />' : get_bloginfo('name'); ?>
+                                <?php echo (strlen($logo) > 0) ? '<img align="middle" src="' . $logo . '" alt="logo" class="custom-logo center-block" />' : get_bloginfo('name'); ?>
                             </a>
-                        </div>
-                    </span>
-                    <span class="col-sm-3"></span>
+                    </div>
+                   
                 </div>
             </div><!-- container -->
         </header>
@@ -48,10 +47,11 @@
                 <!--top_bar-->
                 <div class="top_bar container-fluid">
                     <div class="row">
-                        <nav class="top_nav col-sm-3">
-
+                        <nav class="top_nav col-sm-4">
+                            <a href="https://madmimi.com/signups/315876/join" title="Subscribe" data-toggle="popover" data-placement="right" 
+                               data-content="" class="btn subscribe-btn">Subscribe</a>
                         </nav>
-                        <nav class="top_nav col-sm-5 right" style="padding-left: 19%;">
+                        <nav class="top_nav col-sm-4 right" style="padding-left: 8%;">
 
                             <?php
                             $arg = array(
@@ -76,7 +76,7 @@
                                 $youtube_link = esc_url(get_theme_mod("youtube_link"));
                                 $linkedin_link = esc_url(get_theme_mod("linkedin_link"));
                                 $pinterest_link = esc_url("pinterest.com/shesparkover40");
-                                $instagram_link = esc_url("http://instagram.com/shesparkmag");
+                                $instagram_link = esc_url("instagram.com/shesparkmag");
 
 
                                 if (strlen($facebook_link) > 0) {
@@ -98,7 +98,7 @@
                                     echo '<li class="pinterest"><a href="' . $pinterest_link . '"><i class="fa fa-pinterest-square"></i></a></li>';
                                 }
                                 if (strlen($instagram_link) > 0) {
-                                    echo '<li class="instagram"><a href="' . $instagram_link . '"><i class="fa icon-instagram-square"></i></a></li>';
+                                    echo '<li class="instagram"><a href="' . $instagram_link . '"><i class="fa fa-instagram"></i></a></li>';
                                 }
                                 ?>
                             </ul>
@@ -108,4 +108,5 @@
                 </div>
                 <!-- top_bar -->
             </div><!--nav_wrapper -->
-            <div class="container content_wrapper" id="content_wrapper">
+            <div class="container-fluid content_wrapper" id="content_wrapper">
+

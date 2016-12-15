@@ -24,21 +24,24 @@ get_header();
 <div id="primary" class="content-area col-sm-12">
     <main id="main" class="site-main" role="main">
     </main><!-- #main -->
+    
+    
+    
 </div><!-- #primary -->
 <div class="clearfix"></div>
 <div id="sidebar_wrapper" class=" col-sm-12">
-    <h3 class="text-center underline">MORE FROM SHESPARK</h3>
+    <h2 class="text-center">MORE FROM SHESPARK</h2>
     <?php
     if (!is_active_sidebar('smart-magazine-sidebar-1')) {
         return;
     }
     ?>
-
+    
     <div id="secondary" class="widget-area col-sm-12 col-md-12 sidebar container-fluid" role="complementary">
         <div class="row">
             <?php dynamic_sidebar('smart-magazine-sidebar-1'); ?>
         </div>
-    </div><!-- #secondary -->
+    </div>
     <div class="clearfix"></div>
 </div>
 
@@ -47,5 +50,6 @@ get_header();
     jQuery('.gum_sidebar_posts').children().css({float: 'left', height: '200px'})
 
 </script>    
+<?php // get_sidebar(); ?>
 <?php get_footer(); ?>
 

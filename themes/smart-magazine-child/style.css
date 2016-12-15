@@ -8,10 +8,50 @@
  Version:      1.0.0
  License:      GNU General Public License v2 or later
  License URI:  http://www.gnu.org/licenses/gpl-2.0.html
- Tags:         light, dark, two-columns, right-sidebar, responsive-layout, accessibility-ready
+ Tags: white, two-columns, right-sidebar, responsive-layout, custom-header, custom-background, custom-menu, custom-colors,  threaded-comments, translation-ready, featured-images, theme-options
  Text Domain:  smart-magazine-child
 */
+
+a {
+    text-decoration: none !important;
+}
 
 .underline {
     text-decoration: underline;
 }
+
+#titos {
+    margin-top: 24px;
+}
+
+@media screen and (max-width: 1900px) {
+    #titos {
+        padding-left: 63px;
+    }
+
+}
+
+.contact-info {
+    text-align: center;
+    padding-top: 22px;
+}
+
+.logo {
+    float: right;
+}
+
+.subscribe-btn {
+    background: #E82A85;
+    height: 1.5em;
+    padding-top: 0.10em;
+    color: white;
+}
+
+.entry-title {
+    text-align: center;
+}
+/*
+.custom-logo-link {
+    float: left;
+    margin-right: 10px;
+}*/

@@ -14,35 +14,26 @@
 <footer class="site-footer-wrapper container-fluid" role="contentinfo">
     <div class="row">
         <div class="site-footer col-sm-12">
-            <div class="col-sm-3">
+            <div class="col-sm-4">
                 <?php dynamic_sidebar('smart-magazine-footer-1'); ?>
             </div><!-- col-main -->
-            <div class="col-sm-3 contact-info">
+            <div class="col-sm-4 center-block contact-info">
                 <h3>Contact</h3>
-                <h5>subscriber@shespark.com</h5>
+                <h4>subscriber@shespark.com</h4>
+                <a class="btn subscribe-btn" onclick="window.open('https://madmimi.com/signups/315876/join')" target='_blank'>Subscribe</a>
             </div><!-- col-main -->
-            <div class="col-sm-3">
-               <?php // dynamic_sidebar('smart-magazine-footer-2'); ?>
-            </div><!-- col-main -->
-            <div class="col-sm-3"> 
-
-<!--<img id="titos" src="http://client-3.sarapearce.net/wp-content/uploads/2016/12/Titos-Logo-Horizontal.png" alt="titos" />-->
+<!--            <div class="col-sm-3">
+                <?php // dynamic_sidebar('smart-magazine-footer-3'); ?>
+            </div>-->
+            <div class="col-sm-4">
+                <a href="http://titosvodka.com" target="_blank"><img id="titos" class="center-block" height="80" src="http://client-3.sarapearce.net/wp-content/uploads/2016/12/Titos-Logo-Horizontal_white.png" alt="titos vodka" /></a>
             </div><!-- col-main -->
         </div>
         <div class="clearfix"></div>
         <script type="text/javascript">
             jQuery(".footer-widget-title").remove();
         </script>
-
-        <style>
-            .contact-info {
-                padding-left: 121px;
-                padding-top: 30px;
-            }
-        </style>
-
         <!-- site-footer -->
-
         <div class="clearfix"></div>
         <div class="col-sm-12 copyright text-center">
             <span class="col-sm-12"><a>SheSpark &copy; 2017</a> | <a href="./terms-privacy-policy/">Terms & Privacy Policy

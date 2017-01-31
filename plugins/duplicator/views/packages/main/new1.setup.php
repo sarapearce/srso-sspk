@@ -22,10 +22,14 @@ $dup_tests = array();
 $dup_tests = DUP_Server::GetRequirements();
 $default_name = DUP_Package::GetDefaultName();
 
-$view_state = DUP_UI::GetViewStateArray();
-$ui_css_storage = (isset($view_state['dup-pack-storage-panel']) && $view_state['dup-pack-storage-panel']) ? 'display:block' : 'display:none';
-$ui_css_archive = (isset($view_state['dup-pack-archive-panel']) && $view_state['dup-pack-archive-panel']) ? 'display:block' : 'display:none';
-$ui_css_installer = (isset($view_state['dup-pack-installer-panel']) && $view_state['dup-pack-installer-panel']) ? 'display:block' : 'display:none';
+//View State
+$ctrl_ui = new DUP_CTRL_UI();
+$ctrl_ui->SetResponseType('PHP');
+$data = $ctrl_ui->GetViewStateList();
+
+$ui_css_storage = (isset($data->Payload['dup-pack-storage-panel']) && $data->Payload['dup-pack-storage-panel']) ? 'display:block' : 'display:none';
+$ui_css_archive = (isset($data->Payload['dup-pack-archive-panel']) && $data->Payload['dup-pack-archive-panel']) ? 'display:block' : 'display:none';
+$ui_css_installer = (isset($data->Payload['dup-pack-installer-panel']) && $data->Payload['dup-pack-installer-panel']) ? 'display:block' : 'display:none';
 $dup_intaller_files = implode(", ", array_keys(DUP_Server::GetInstallerFiles()));
 $dbbuild_mode = (DUP_Settings::Get('package_mysqldump') && DUP_Database::GetMySqlDumpPath()) ? 'mysqldump' : 'PHP';
 
@@ -61,13 +65,13 @@ TOOL BAR: STEPS -->
                 </div> 
             </div>	
         </td>
-        <td class="dup-toolbar-btns">
-            <a id="dup-pro-create-new"  href="?page=duplicator" class="add-new-h2"><i class="fa fa-archive"></i> <?php _e("All Packages", 'duplicator'); ?></a> &nbsp;
-            <span> <?php _e("Create New", 'duplicator'); ?></span>
+        <td>
+            <a id="dup-pro-create-new"  href="?page=duplicator" class="add-new-h2"><i class="fa fa-archive"></i> <?php _e("All Packages", 'duplicator'); ?></a>
+			<span> <?php _e("Create New", 'duplicator'); ?></span>
         </td>
     </tr>
 </table>	
-<hr style="margin-bottom:8px">
+<hr class="dup-toolbar-line">
 
 <?php if (!empty($action_response)) : ?>
     <div id="message" class="updated below-h2"><p><?php echo $action_response; ?></p></div>

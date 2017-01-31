@@ -3,7 +3,7 @@
 	$ssl_installed = (strtolower($home_url['scheme']) === 'http') ? false : true;
 ?>
 <form method="post" action="<?php echo admin_url('admin-post.php?action=abovethefold-monitor-update'); ?>" class="clearfix">
-	<?php wp_nonce_field('advanced-optimization'); ?>
+	<?php wp_nonce_field('abovethefold'); ?>
 	<div class="wrap abovethefold-wrapper">
 		<div id="poststuff">
 			<div id="post-body" class="metabox-holder">
@@ -14,7 +14,7 @@
 						</div>
 
 						<h3 class="hndle">
-							<span><?php _e( 'Website Monitor', 'advanced-optimization' ); ?></span>
+							<span><?php _e( 'Website Monitor', 'abovethefold' ); ?></span>
 						</h3>
 						<div class="inside testcontent">
 

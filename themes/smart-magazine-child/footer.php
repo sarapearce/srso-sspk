@@ -26,7 +26,7 @@
                 <?php // dynamic_sidebar('smart-magazine-footer-3'); ?>
             </div>-->
             <div class="col-sm-4">
-                <a href="http://titosvodka.com" target="_blank"><img id="titos" class="center-block" height="80" src="http://client-3.sarapearce.net/wp-content/uploads/2016/12/Titos-Logo-Horizontal_white.png" alt="titos vodka" /></a>
+                <a href="http://titosvodka.com" target="_blank"><img id="titos" class="center-block img-responsive" height="80" src="http://client-3.sarapearce.net/wp-content/uploads/2016/12/Titos-Logo-Horizontal_white.png" alt="titos vodka" /></a>
             </div><!-- col-main -->
         </div>
         <div class="clearfix"></div>
@@ -35,7 +35,7 @@
         </script>
         <!-- site-footer -->
         <div class="clearfix"></div>
-        <div class="col-sm-12 copyright text-center">
+        <div class="col-sm-12 text-center copyright">
             <span class="col-sm-12"><a>SheSpark &copy; 2017</a> | <a href="./terms-privacy-policy/">Terms & Privacy Policy
                 </a></span></div>
         <div class="clearfix"></div>
@@ -43,8 +43,6 @@
 </footer><!-- .site-footer-wrapper -->
 
 <?php wp_footer(); ?>
-
-
 
 
 </body>

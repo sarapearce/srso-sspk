@@ -12,71 +12,13 @@ jQuery(function() {
 
             if (!jQuery('#addcriticalcss-form').is(':visible')) {
 
-                if (!window.addccConditions) {
-                    window.addccConditions = jQuery.parseJSON(jQuery('#addcc_condition_options').val());
-                }
-                
                 var select = jQuery('#addcc_conditions');
 
                 if (!select.data('conditions-loaded')) {
 
                     select.data('conditions-loaded',1);
 
-                    /**
-                     * Populate selectmenu
-                     */
-                    
-                    select.empty();
-
-                    select.append(jQuery('<option value=""></option>'));
-
-                    var optgroupRegex = new RegExp('^<optgroup','i');
-                    var optgroupEndRegex = new RegExp('^</optgroup','i');
-                    var optionRegex = new RegExp('^<option','i');
-
-                    var opt,optgroup;
-                    for (var i = 0; i < window.addccConditions.length; i++) {
-                        opt = window.addccConditions[i];
-
-                        if (optgroupRegex.test(opt)) {
-                            optgroup = jQuery(opt);
-                        }
-                        if (optgroupEndRegex.test(opt)) {
-                            select.append(optgroup);
-                            optgroup = false;
-                        }
-                        if (optionRegex.test(opt)) {
-                            if (optgroup) {
-                                optgroup.append(jQuery(opt));
-                            } else {
-                                select.append(jQuery(opt));
-                            }
-                        }
-                    }
-
-                    jQuery('#addcc_conditions').selectize({
-                        persist         : true,
-                        placeholder     : "Select one or more conditions...",
-                        render: {
-                            optgroup_header: function(item, escape) {
-                                return '<div class="optgroup-header "><span class="'+item.class+'">&nbsp;</span>' + escape(item.label) + '</div>';
-                            },
-                            option: function(item, escape) {
-                                return '<div>' +
-                                    '<span class="title">' +
-                                        '<span class="name">' + escape(item.text) + '</span>' +
-                                    '</span>' +
-                                '</div>';
-                            },
-                            item: function(item, escape) {
-                                return '<div class="'+item.class+'" title="' + escape(item.text) + '">' +
-                                    '<span class="name">' + escape(item.title||item.text) + '</span>' +
-                                '</div>';
-                            }
-                        },
-                        plugins         : ['remove_button']
-                    });
-
+                    window.loadConditionSelect(jQuery('#addcc_conditions'));
                 }
             }
 
@@ -105,11 +47,6 @@ jQuery(function() {
                 return;
             }
 
-            if (!conditions || conditions === null) {
-                alert('Select conditions...');
-                return;
-            }
-
             // create add form
             var form = jQuery('<form />');
             form.attr('method','post');
@@ -119,15 +56,14 @@ jQuery(function() {
             input.val(name);
             form.append(input);
 
+            var input = jQuery('<input type="hidden" name="conditions" />');
+            input.val(conditions);
+            form.append(input);
+
             var input = jQuery('<input type="hidden" name="_wpnonce" />');
             input.val(jQuery('#_wpnonce').val());
             form.append(input);
 
-            for (var i = 0; i < conditions.length; i++) {
-                var input = jQuery('<input type="hidden" name="conditions[]" />');
-                input.val(conditions[i]);
-                form.append(input);
-            }
 
             jQuery('body').append(form);
 

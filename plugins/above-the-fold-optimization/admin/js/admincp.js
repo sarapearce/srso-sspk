@@ -154,7 +154,7 @@ jQuery(function($) {
             jQuery( window ).scroll(scrollHandler);
 
             jQuery('#livehtml').show();
-            jQuery('#livehtml').html('<span class="live wp-exclude-emoji"><span class="tag">&lt;div <span class="ws">⚡</span>&gt</span><span class="text">realtime writing for 10.000 viewers, as simple as a HTML attribute</span><span class="tag">&lt;/div&gt</span></span>');
+            jQuery('#livehtml').html('<span class="live wp-exclude-emoji"><span class="tag">&lt;div <span class="ws">⚡</span>&gt</span><span class="text">real-time writing for 10.000 viewers, as simple as a HTML attribute</span><span class="tag">&lt;/div&gt</span></span>');
             if ( !jQuery('#livehtml').data('realtimetext') ) {
                 jQuery('#livehtml').data('realtimetext',1);
                 var color = jQuery('#livehtml .live span.text').css("color").replace(')', ', 0.7)').replace('rgb', 'rgba');

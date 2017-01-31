@@ -242,8 +242,6 @@
 				path += cachehash.substr(0,2) + '/';
 				path += cachehash.substr(2,2) + '/';
 				path += cachehash.substr(4,2) + '/';
-				path += cachehash.substr(6,2) + '/';
-				path += cachehash.substr(8,2) + '/';
 				path += cachehash;
 
 				if (ABTFDEBUG) {

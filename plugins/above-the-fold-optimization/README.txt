@@ -1,9 +1,9 @@
 === Above The Fold Optimization ===
 Contributors: optimalisatie
 Donate link: https://pagespeed.pro/
-Tags: optimization, above the fold, critical css, css, performance, localization, javascript, minification, minify, minify css, minify stylesheet, optimize, speed, stylesheet, pagespeed, google, web font, webfont
+Tags: optimization, above the fold, pagespeed, css, performance, critical css, localization, javascript, minification, minify, minify css, minify stylesheet, optimize, speed, stylesheet, google, web font, webfont
 Requires at least: 3.0.1
-Tested up to: 4.6.1
+Tested up to: 4.7
 Stable tag: 4.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -55,7 +55,7 @@ The HTML5 script loader offers the following unique features:
 * abide WordPress dependencies
 * faster script loading than browser cache, especially on mobile
 
-Saving javascript requests will result in a faster load speed for returning visitors from Google. Google will notice several factors such as an improved bounce rate and when you use Google Analytics, Google will also measure physical site speed.
+Saving javascript requests will result in a faster load speed for returning visitors.
 
 ### Lazy Loading Javascript
 
@@ -77,9 +77,9 @@ The plugin contains a tool to localize (proxy) external javascript and CSS resou
 
 The plugin contains a tool to optimize web fonts. The plugin automatically parses web font `@import` links in minified CSS files and `<link>` links in the HTML and loads the fonts via [Google Web Font Loader](https://github.com/typekit/webfontloader).
 
-### Gulp.js Critical CSS Generator Creator
+### Gulp.js Critical CSS Creator
 
-The plugin contains a tool to manage Critical CSS Generator tasks that optionally automatically updates WordPress Critical CSS. The tool is based on [critical](https://github.com/addyosmani/critical) (by a Google engineer) and makes it possible for designers and less experienced WordPress users to create professional quality Critical CSS in just a few seconds. The tool is intended to make it more efficient to maintain perfect quality Critical CSS.
+The plugin contains a tool to manage Critical CSS Generator tasks that optionally automatically update WordPress Critical CSS. The tool is based on [critical](https://github.com/addyosmani/critical) (by a Google engineer) and makes it possible for designers and less experienced WordPress users to create professional quality Critical CSS in just a few seconds. The tool is intended to make it more efficient to maintain perfect quality Critical CSS.
 
 == Installation ==
 
@@ -103,11 +103,54 @@ The plugin contains a tool to manage Critical CSS Generator tasks that optionall
 
 == Changelog ==
 
+= 2.7.10 =
+* Update: updated support policy.
+
+= 2.7.9 =
+* Bugfix: PHP 7 does not support methods with a double underscore prefix.
+
+= 2.7.8 =
+* Added: module for [LiteSpeed Cache](https://wordpress.org/plugins-wp/litespeed-cache/). ([pending evaluation by requesting user](https://wordpress.org/support/topic/please-add-support-for-litespeed-cache/))
+
+= 2.7.7 =
+* Updated: cache directory moved to /wp-content/cache/abtf/
+* Updated: default file permissions set to 666 (public read & write) to allow FTP access.
+* Added: proxy cache cleanup cron.
+* Added: proxy cache stats on proxy configuration page.
+* Added: file and expire meta header added to proxy cache files.
+* Improved: wp_remote_get implementation optimized by disabling keep-alive. (@aamir2007)
+
+= 2.7.6 =
+* Bugfix: notice error on theme switch. (@samkatakouzinos)
+* Improved: global.css Critical Path CSS file automatically created on theme switch.
+
+= 2.7.5 =
+* Bugfix: Full CSS export is missing quotes in url translation.
+
+= 2.7.4 =
+* Added: warning in admin panel when Critical Path CSS is empty.
+
+= 2.7.3 =
+* Bugfix: notice error with WP_DEBUG enabled. (@samkatakouzinos)
+
+= 2.7.2 =
+* Updated: minor improvements.
+
+= 2.7.1 =
+* Added: Google Webfont zip-file upload and extract.
+
+= 2.7.0 =
+* Updated: Critical CSS file storage location moved to theme directory.
+* Added: file based critical CSS configuration to allow editing via FTP.
+* Added: Critical CSS filter function condition.
+* Added: append/prepend CSS file(s) to critical CSS.
+* Added: enhanced Critical CSS debug comment.
+
 = 2.6.17 =
-* Updated: New [Google Mobile Indexation Test](https://search.google.com/search-console/mobile-friendly).
+* Updated: new [Google Mobile Indexation Test](https://search.google.com/search-console/mobile-friendly).
 
 = 2.6.16 =
-* Bugfix: Stray script end tags not removed. (@ferares)
+* Bugfix: stray script end tags not removed. (@ferares)
 * Added: support for AMP Supremacy. (@cwfaraday)
 * Added: website monitor resource.
 

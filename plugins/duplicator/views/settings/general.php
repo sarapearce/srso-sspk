@@ -153,8 +153,22 @@ $mysqlDumpFound = ($mysqlDumpPath) ? true : false;
                         <?php
                         _e("This server does not have shell_exec configured to run.", 'duplicator');
                         echo '<br/>';
-                        _e("Please contact the server administrator to enable this feature.", 'duplicator');
+                        _e("Contact the server administrator to enable this feature.", 'duplicator');
                         ?>
+						<br/>
+						<small>
+							<i style="cursor: pointer" 
+								data-tooltip-title="<?php _e("Host Recommendation:", 'duplicator'); ?>" 
+								data-tooltip="<?php _e('Duplicator recommends going with the high performance pro plan or better from our recommended list', 'duplicator'); ?>">
+							<i class="fa fa-lightbulb-o" aria-hidden="true"></i>
+								<?php
+									printf("%s <a target='_blank' href='//snapcreek.com/wordpress-hosting/'>%s</a> %s",
+										__("Please visit our recommended", 'duplicator'), 
+										__("host list", 'duplicator'),
+										__("for reliable access to mysqldump", 'duplicator'));
+								?>
+							</i>
+						</small>
                     </p>
                 <?php else : ?>
                     <input type="radio" name="package_dbmode" value="mysql" id="package_mysqldump" <?php echo ($package_mysqldump) ? 'checked="checked"' : ''; ?> />
@@ -165,12 +179,12 @@ $mysqlDumpFound = ($mysqlDumpPath) ? true : false;
 							<small>
 								<i style="cursor: pointer" 
 									data-tooltip-title="<?php _e("Host Recommendation:", 'duplicator'); ?>" 
-									data-tooltip="<?php _e('Duplicator recommends going with the high performance pro plan or better from Bluehost.com', 'duplicator'); ?>">
+									data-tooltip="<?php _e('Duplicator recommends going with the high performance pro plan or better from our recommended list', 'duplicator'); ?>">
 								<i class="fa fa-lightbulb-o" aria-hidden="true"></i>
 									<?php
-										printf("%s <a target='_blank' href='//www.bluehost.com/track/snapcreek/?page=wordpress'>%s</a> %s",
-											__("Duplicator recommends ", 'duplicator'), 
-											__("Bluehost", 'duplicator'),
+										printf("%s <a target='_blank' href='//snapcreek.com/wordpress-hosting/'>%s</a> %s",
+											__("Please visit our recommended", 'duplicator'), 
+											__("host list", 'duplicator'),
 											__("for reliable access to mysqldump", 'duplicator'));
 									?>
 								</i>
@@ -194,21 +208,18 @@ $mysqlDumpFound = ($mysqlDumpPath) ? true : false;
 
                         <label><?php _e("Add Custom Path:", 'duplicator'); ?></label><br/>
                         <input type="text" name="package_mysqldump_path" id="package_mysqldump_path" value="<?php echo $package_mysqldump_path; ?> " />
-                        <p class="description">
-                            <?php
-                            _e("This is the path to your mysqldump program.", 'duplicator');
-                            ?>
-                        </p>
+                        <p class="description"><?php _e("This is the path to your mysqldump program.", 'duplicator'); ?></p>
                     </div>
 
                 <?php endif; ?>
             </td>
         </tr>	
         <tr>
-            <th scope="row"><label><?php _e("Package Debug", 'duplicator'); ?></label></th>
+            <th scope="row"><label><?php _e("Debugging", 'duplicator'); ?></label></th>
             <td>
                 <input type="checkbox" name="package_debug" id="package_debug" <?php echo ($package_debug) ? 'checked="checked"' : ''; ?> />
-                <label for="package_debug"><?php _e("Show Package Debug Status in Packages Screen", 'duplicator'); ?></label>
+                <label for="package_debug"><?php _e("Enable debug options throughout user interface", 'duplicator'); ?></label>
+				<p class="description"><?php  _e("Refresh page after saving to show/hide Debug menu", 'duplicator'); ?></p>
             </td>
         </tr>	
 

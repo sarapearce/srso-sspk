@@ -186,6 +186,7 @@ class Abovethefold_Proxy {
 					$preloadlist[] = array($url,'js');
 				}
 			}
+
 		}
 
 		if (!empty($preloadlist)) {
@@ -236,6 +237,7 @@ class Abovethefold_Proxy {
 				if ($url === '') { continue; }
 
 				$cache_hash = $this->cache_hash($url,$type,$url);
+
 				if ($url_config) {
 
 					$preload_url = array();
@@ -255,9 +257,8 @@ class Abovethefold_Proxy {
 						}
 					}
 					if (isset($url_config['cdn']) && $url_config['cdn']) {
-						$preload_url[4] = $this->CTRL->cache_dir( $url_config['cdn'] ) . 'proxy/';
+						$preload_url[4] = preg_replace('|^(http(s)?:)?//[^/]+/|Ui',trailingslashit($url_config['cdn']),$this->CTRL->cache_dir('proxy'));
 					}
-
 					$this->{$type . '_preload'}[] = $preload_url;
 
 				} else if ($cache_hash) {
@@ -270,6 +271,7 @@ class Abovethefold_Proxy {
 
 		// WordPress root with trailingslash
 		$this->abspath = trailingslashit( ABSPATH );
+
 	}
 
 	/**
@@ -456,25 +458,23 @@ class Abovethefold_Proxy {
 		}
 
 		// Initialize cache path
-		$cache_path = $this->CTRL->cache_path() . 'proxy/';
+		$cache_path = $this->CTRL->cache_path('proxy');
 		if (!is_dir($cache_path)) {
-			if (!@mkdir($cache_path, $this->CTRL->CHMOD_DIR, true)) {
-				$this->error('Failed to create directory ' . $cache_path);
-			}
+			$this->error('Proxy cache directory not available ' . $cache_path);
 		}
 
-		$dir_blocks = array_slice(str_split($hash, 2), 0, 5);
+		$dir_blocks = array_slice(str_split($hash, 2), 0, 3);
 		foreach ($dir_blocks as $block) {
 			$cache_path .= $block . '/';
 
-			if (!$create && !is_dir($cache_path)) {
-				return false;
-			}
-		}
-
-		if (!is_dir($cache_path)) {
-			if (!@mkdir($cache_path, $this->CTRL->CHMOD_DIR, true)) {
-				$this->error('Failed to create directory ' . $cache_path);
+			if (!is_dir($cache_path)) {
+				if (!$create) {
+					return false;
+				} else {
+					if (!$this->CTRL->mkdir($cache_path)) {
+						$this->error('Failed to create directory ' . $cache_path);
+					}
+				}
 			}
 		}
 
@@ -587,9 +587,9 @@ class Abovethefold_Proxy {
 			return false;
 		}
 
-		$url = $this->CTRL->cache_dir( $cdn ) . 'proxy/';
+		$url = $this->CTRL->cache_dir('proxy');
 		
-		$dir_blocks = array_slice(str_split($hash, 2), 0, 5);
+		$dir_blocks = array_slice(str_split($hash, 2), 0, 3);
 		foreach ($dir_blocks as $block) {
 			$url .= $block . '/';
 		}
@@ -740,7 +740,7 @@ class Abovethefold_Proxy {
 
 		// cache file
 		$cache_file = $this->cache_file_path($filehash, $type);
-		
+
 		/**
 		 * Return cache file
 		 */
@@ -815,13 +815,26 @@ class Abovethefold_Proxy {
 		}
 
 		/**
+		 * Add proxy identification header (and increase security)
+		 */
+		if ($file_data) {
+
+			if (!empty($this->custom_expire) && isset($this->custom_expire[$url])) {
+				$expire_time = $this->custom_expire[$url];
+			} else {
+				$expire_time = $this->default_cache_expire;
+			}
+
+			$file_data = "/** " . (($type === 'js') ? 'Javascript' : 'CSS') . " Proxy / Above The Fold Optimization v".WPABTF_VERSION."\n * @url ".$url."\n * @expire ".date("Y/m/d H:i:s",(time() + $expire_time))." */\n" . $file_data;
+		}
+
+		/**
 		 * Apply optimization filters to resource content
 		 */
 		$file_data = apply_filters('abtf_css', $file_data);
 
 		if ($file_data) {
-			file_put_contents($cache_file,$file_data);
-			chmod($cache_file, $this->CTRL->CHMOD_FILE);
+			$this->CTRL->file_put_contents($cache_file,$file_data);
 		} else {
 			if ($debugExit) {
 				$this->error('Failed to proxy file ' . htmlentities($url,ENT_COMPAT,'utf-8'));
@@ -951,7 +964,9 @@ class Abovethefold_Proxy {
 
 		$parsed = $this->parse_url($url);
 		if ($parsed) {
-			$cache_path = $this->cache_file_path($parsed[1], $type, false);
+
+			$cache_path = $this->cache_file_path($parsed[1], $type, false);	
+
 			if (!$cache_path) {
 				return false;
 			}
@@ -1073,7 +1088,7 @@ class Abovethefold_Proxy {
 
 		if (!empty($preload)) {
 			$jssettings['proxy']['preload'] = $preload;
-			$jssettings['proxy']['base'] = $this->CTRL->cache_dir( $this->cdn ) . 'proxy/';
+			$jssettings['proxy']['base'] = $this->CTRL->cache_dir('proxy');
 		}
 
 		$keys = array('js_include','css_include','js_exclude','css_exclude');
@@ -1088,4 +1103,141 @@ class Abovethefold_Proxy {
 
 	}
 
+	/**
+	 * Prune expired cache entries
+	 */
+	public function prune( $stats_only = false ) {
+
+		// age to delete cache file
+		$prune_age = 30 * 86400; // 1 month
+		$prune_time = (time() - $prune_age);
+
+		$file_count = 0;
+		$file_size = 0;
+		$deleted_count = 0;
+
+		$cache_path = $this->CTRL->cache_path('proxy');
+
+		$root_dir = array_diff(scandir($cache_path), array('..', '.'));
+		foreach ($root_dir as $dirA) {
+			if (strlen($dirA) === 2 && is_dir($cache_path . $dirA . '/')) {
+
+				$A_dir = array_diff(scandir($cache_path . $dirA . '/'), array('..', '.'));
+				foreach ($A_dir as $dirB) {
+					if (strlen($dirB) === 2 && is_dir($cache_path . $dirA . '/' . $dirB . '/')) {
+						$C_dir = array_diff(scandir($cache_path . $dirA . '/' . $dirB . '/'), array('..', '.'));
+						foreach ($C_dir as $dirC) {
+							if (strlen($dirC) === 2 && is_dir($cache_path . $dirA . '/' . $dirB . '/' . $dirC . '/')) {
+
+								$C_cache_path = $cache_path . $dirA . '/' . $dirB . '/' . $dirC . '/';
+								
+								$cache_files = array_diff(scandir($C_cache_path), array('..', '.'));
+								foreach ($cache_files as $file) {
+
+									// date created
+									$date_created = filemtime($C_cache_path . $file);
+
+									// older than min age, delete cache file
+									if ($date_created < $prune_time) {
+
+										if (!$stats_only) {
+											@unlink($cache_path . $file);
+											$deleted_count++;
+										}
+									} else {
+
+										$file_count++;
+										$file_size += filesize($C_cache_path . $file);
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+
+		// add warning for admin
+		if ($file_count > 500) {
+			$this->CTRL->admin->set_notice('<h4 style="margin:0px;padding:0px;">Above The Fold Optimization</h4><p style="margin:0px;margin-top:4px;">The Proxy Cache directory contains '.number_format($file_count,0,'.',',').' cache entries. This may indicate that auto-capture captures a script with a changing url that causes a new cache entry to be created on each request.</p>
+				<p style="margin:0px;">The <a href="'. add_query_arg( array( 'page' => 'abovethefold', 'tab' => 'proxy' ), admin_url( 'admin.php' ) ) . '#jsoncnf">Proxy configuration page</a> shows a solution to capture scripts with a changing url using a JSON config object.</p>', 'ERROR',array(
+					'date' => time(),
+					'expire' => (60 * 2)
+				));
+		}
+
+		// empty cache directory when reaching > 5,000 files
+		if ($file_count > 5000) {
+			$this->empty_cache();
+
+			$this->CTRL->admin->set_notice('<h4 style="margin:0px;padding:0px;">Above The Fold Optimization</h4><p style="margin:0px;margin-top:4px;">The Proxy Cache directory reached '.number_format($file_count,0,'.',',').' cache entries. The cache directory has been emptied.</p>', 'ERROR',array(
+					'date' => time(),
+					'expire' => (60 * 2)
+				));
+
+			$deleted_count = $file_count + $deleted_count;
+			$file_size = $file_count = 0;
+		}
+
+		// update proxy stats
+		$stats = get_option( 'abovethefold-proxy-stats' );
+		if (!is_array($stats)) {
+			$stats = array();
+		}
+		$stats['files'] = $file_count;
+		$stats['size'] = $file_size;
+		$stats['deleted'] = $deleted_count;
+
+		$stats['date'] = time();
+
+		update_option( 'abovethefold-proxy-stats', $stats, false );
+
+		return $stats;
+	}
+
+	/**
+	 * Empty cache directory
+	 */
+	public function empty_cache() {
+
+		$cache_path = $this->CTRL->cache_path('proxy');
+		$root_dir = array_diff(scandir($cache_path), array('..', '.'));
+		foreach ($root_dir as $dirA) {
+			$this->CTRL->rmdir($cache_path . $dirA . '/');
+		}
+
+		$this->prune( true );
+
+	}
+
+	/**
+	 * Get proxy cache stats
+	 */
+	public function cache_stats() {
+
+		$stats = get_option( 'abovethefold-proxy-stats' );
+		if (is_array($stats) && isset($stats['date']) && intval($stats['date']) > (time() - (60 * 60))) {
+			return $stats;
+		}
+
+		return $this->prune( true );
+	}
+
+	/**
+	 * Cron prune method
+	 */
+	public function cron_prune() {
+
+		// cron logfile
+		$cache_path = $this->CTRL->cache_path('proxy');
+		$cronlog = $cache_path . 'cleanup_cron.log';
+		$this->CTRL->file_put_contents($cronlog, 'start: ' . date('r'));
+
+		// prune cache
+		$stats = $this->prune( false );
+
+		// log result
+		$this->CTRL->file_put_contents($cronlog, 'completed: ' . date('r') . "\nDeleted: " . $stats['deleted'] . "\nFiles: " . $stats['files'] . "\nSize: " . $stats['size']);
+	}
 }
+

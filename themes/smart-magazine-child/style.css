@@ -50,8 +50,15 @@ a {
 .entry-title {
     text-align: center;
 }
-/*
-.custom-logo-link {
-    float: left;
-    margin-right: 10px;
-}*/
+
+.widget-title {
+    text-align: center;
+}
+
+@media screen and (max-width: 770px) {
+    padding-left: 0;
+}
+
+.top_bar_nav {
+     padding-left: 8%;
+}

@@ -102,22 +102,14 @@ class Abovethefold_Admin_BuildTool {
 
 		// Update
 		if ($update) {
-			if ($update === 'global') {
+			$criticalcss_files = $this->CTRL->criticalcss->get_theme_criticalcss();
+			if (!isset($criticalcss_files[$update])) {
+				$this->CTRL->admin->set_notice('You did not select a valid conditional CSS file to update.', 'ERROR');
+				wp_redirect( add_query_arg( array( 'page' => 'abovethefold', 'tab' => 'build-tool','taskname' => $taskname, 'dimensions' => $dimensions, 'extra' => $extra, 'update' => $update ), admin_url( 'admin.php' ) ) );
 
-				// update global critical CSS
-			} else {
-
-				$conditionalcss_enabled = (isset($options['conditionalcss_enabled']) && intval($options['conditionalcss_enabled']) === 1) ? true : false;
-
-				// conditional critical CSS
-				if ($conditionalcss_enabled && !empty($options['conditional_css']) && isset($options['conditional_css'][$update])) {
-					$key = $update;
-					$update = $options['conditional_css'][$update];
-					$update['key'] = $key;
-				} else {
-					$update = false;
-				}
 			}
+		} else {
+			$update = false;
 		}
 
 		// get page JSON
@@ -159,7 +151,7 @@ class Abovethefold_Admin_BuildTool {
 		 */
 		$gulpdir = get_stylesheet_directory() . '/abovethefold/';
 		if (!is_dir($gulpdir)) {
-			if (!@mkdir( $gulpdir, $this->CTRL->CHMOD_DIR )) {
+			if (!@$this->CTRL->mkdir( $gulpdir )) {
 				wp_die( 'Failed to create ' . $gulpdir );
 			}
 		}
@@ -169,43 +161,59 @@ class Abovethefold_Admin_BuildTool {
 		if (is_dir($gulptaskdir)) {
 
 			// remove existing
-			function __rmdir_recursive($dir,$delete=true) {
+			function abtf_rmdir_recursive($dir,$delete=true) {
 				$files = array_diff(scandir($dir), array('.','..')); 
 				foreach ($files as $file) { 
-					(is_dir("$dir/$file")) ? __rmdir_recursive("$dir/$file") : @unlink("$dir/$file"); 
+					(is_dir("$dir/$file")) ? abtf_rmdir_recursive("$dir/$file") : @unlink("$dir/$file"); 
 				} 
 				return ($delete) ? @rmdir($dir) : false; 
 			}
-			__rmdir_recursive($gulptaskdir,false);
+			abtf_rmdir_recursive($gulptaskdir,false);
 		}
 
 		if (!is_dir($gulptaskdir)) {
-			if (!@mkdir( $gulptaskdir, $this->CTRL->CHMOD_DIR )) {
+			if (!$this->CTRL->mkdir( $gulptaskdir )) {
 				wp_die( 'Failed to create ' . $gulptaskdir );
 			}
 		}
 
 		// css dir
 		if (!is_dir($gulptaskdir . 'css/')) {
-			if (!@mkdir( $gulptaskdir . 'css/', $this->CTRL->CHMOD_DIR )) {
+			if (!$this->CTRL->mkdir( $gulptaskdir . 'css/' )) {
 				wp_die( 'Failed to create ' . $gulptaskdir . 'css/' );
 			}
+		}
+
+		$gulp_installed = is_dir($gulpdir . 'node_modules/');
+
+		// gulp-header added in version 2.7
+		// @since 2.7
+		if (!is_dir($gulpdir . 'node_modules/gulp-header/')) {
+			
+			// remove package / gulpfile to re-create in next steps
+			if (file_exists($gulpdir . 'package.json')) {
+				@unlink($gulpdir . 'package.json');
+			}
+			if (file_exists($gulpdir . 'gulpfile.js')) {
+				@unlink($gulpdir . 'gulpfile.js');
+			}
+
+			$gulp_installed = false;
 		}
 
 		// copy package.json if it does not exist
 		if (!file_exists($gulpdir . 'package.json')) {
 			copy( WPABTF_PATH . 'modules/critical-css-build-tool/package.json', $gulpdir . 'package.json' );
-			chmod( $gulpdir . 'package.json', $this->CTRL->CHMOD_FILE );
+			chmod($gulpdir . 'package.json', 0666);
 		}
 		// copy gulpfile.js if it does not exist
 		if (!file_exists($gulpdir . 'gulpfile.js')) {
 			copy( WPABTF_PATH . 'modules/critical-css-build-tool/gulpfile.js', $gulpdir . 'gulpfile.js' );
-			chmod( $gulpdir . 'gulpfile.js', $this->CTRL->CHMOD_FILE );
+			chmod($gulpdir . 'gulpfile.js', 0666);
 		}
 
 		// add html file
-		file_put_contents($gulptaskdir . '/page.html',$pagejson['html']);
-		chmod( $gulptaskdir . '/page.html', $this->CTRL->CHMOD_FILE );
+		$this->CTRL->file_put_contents($gulptaskdir . '/page.html',$pagejson['html']);
 
 		$fullcss = '';
 		$taskjs_cssfiles = array();
@@ -214,8 +222,7 @@ class Abovethefold_Admin_BuildTool {
 		foreach($pagejson['css'] as $file){
 
 		    #add it to the zip
-			file_put_contents($gulptaskdir . '/css/' . $file['file'],$file['code']);
-			chmod( $gulptaskdir . '/css/' . $file['file'], $this->CTRL->CHMOD_FILE );
+			$this->CTRL->file_put_contents($gulptaskdir . '/css/' . $file['file'],$file['code']);
 
 		    $fullcss .= $file['code'];
 
@@ -223,16 +230,14 @@ class Abovethefold_Admin_BuildTool {
 		}
 
 		// add full css file
-		file_put_contents($gulptaskdir . '/full.css',$fullcss);
-		chmod( $gulptaskdir . '/full.css', $this->CTRL->CHMOD_FILE );
+		$this->CTRL->file_put_contents($gulptaskdir . '/full.css',$fullcss);
 
 		// add extra css file
 		if ($extra) {
-			file_put_contents($gulptaskdir . '/extra.css','/** 
+			$this->CTRL->file_put_contents($gulptaskdir . '/extra.css','/** 
  * Use this file to append extra CSS to critical.css. 
  * This CSS code is not processed by the Critical CSS generator to enable correction of the output of the Critical CSS generator.
  */');
-			chmod( $gulptaskdir . '/extra.css', $this->CTRL->CHMOD_FILE );
 		}
 
 		/**
@@ -245,10 +250,9 @@ class Abovethefold_Admin_BuildTool {
 		}
 
 		// add full css file
-		file_put_contents($gulptaskdir . '/gulp-critical-task.js',$taskjs);
-		chmod( $gulptaskdir . '/gulp-critical-task.js', $this->CTRL->CHMOD_FILE );
+		$this->CTRL->file_put_contents($gulptaskdir . '/gulp-critical-task.js',$taskjs);
 
-		$gulp_installed = is_dir($gulpdir . 'node_modules/');
+		
 
 		// add notice
 		$this->CTRL->admin->set_notice('<div style="font-size:18px;line-height:20px;margin:0px;">The package has been installed in <strong>'.trailingslashit(str_replace(home_url(),'',get_stylesheet_directory_uri())).'abovethefold/</strong>
@@ -406,7 +410,7 @@ class Abovethefold_Admin_BuildTool {
 
     	$gulpdir = get_stylesheet_directory() . '/abovethefold/';
 		if (!is_dir($gulpdir)) {
-			if (!@mkdir( $gulpdir, $this->CTRL->CHMOD_DIR )) {
+			if (!$this->CTRL->mkdir( $gulpdir )) {
 				wp_die( 'Failed to create ' . $gulpdir );
 			}
 		}
@@ -414,12 +418,10 @@ class Abovethefold_Admin_BuildTool {
 		// copy package.json if it does not exist
 		if (!file_exists($gulpdir . 'package.json')) {
 			copy( WPABTF_PATH . 'modules/critical-css-build-tool/package.json', $gulpdir . 'package.json' );
-			chmod( $gulpdir . 'package.json', $this->CTRL->CHMOD_FILE );
 		}
 		// copy gulpfile.js if it does not exist
 		if (!file_exists($gulpdir . 'gulpfile.js')) {
 			copy( WPABTF_PATH . 'modules/critical-css-build-tool/gulpfile.js', $gulpdir . 'gulpfile.js' );
-			chmod( $gulpdir . 'gulpfile.js', $this->CTRL->CHMOD_FILE );
 		}
 
 		// add notice
@@ -488,7 +490,7 @@ class Abovethefold_Admin_BuildTool {
 				if (in_array('all',$file['media'])) {
 					if (isset($file['inline']) && intval($file['inline']) === 1) {
 
-						$header = "/**\n * Inline CSS exported from ".$url."\n *\n * @inline " . $file['src'] . "\n * @size " . $this->human_filesize(strlen($file['inlinecode'])) . "\n * @media ".implode(', ',$file['media']) . "\n * @position ".$file_number."\n */\n\n";
+						$header = "/**\n * Inline CSS exported from ".$url."\n *\n * @inline " . $file['src'] . "\n * @size " . $this->CTRL->admin->human_filesize(strlen($file['inlinecode'])) . "\n * @media ".implode(', ',$file['media']) . "\n * @position ".$file_number."\n */\n\n";
 
 						$json_result['css'][] = array(
 							'file' => $file_number . '-' . $file['src'] . '.css',
@@ -496,7 +498,7 @@ class Abovethefold_Admin_BuildTool {
 						);
 					} else {
 
-						$header = "/**\n * CSS file exported from ".$url."\n *\n * @file " . $file['src'] . "\n * @size " . $this->human_filesize(strlen($file['code'])) . "\n * @media ".implode(', ',$file['media']) . "\n * @position ".$file_number."\n  */\n\n";
+						$header = "/**\n * CSS file exported from ".$url."\n *\n * @file " . $file['src'] . "\n * @size " . $this->CTRL->admin->human_filesize(strlen($file['code'])) . "\n * @media ".implode(', ',$file['media']) . "\n * @position ".$file_number."\n  */\n\n";
 
 						$json_result['css'][] = array(
 							'file' => $file_number . '-' . $filename,
@@ -506,7 +508,7 @@ class Abovethefold_Admin_BuildTool {
 				} else {
 					if (isset($file['inline']) && intval($file['inline']) === 1) {
 
-						$header = "/**\n * Inline CSS exported from ".$url."\n *\n * @inline " . $file['src'] . "\n * @size " . $this->human_filesize(strlen($file['inlinecode'])) . "\n * @media ".implode(', ',$file['media']) . "\n * @position ".$file_number."\n */\n\n";
+						$header = "/**\n * Inline CSS exported from ".$url."\n *\n * @inline " . $file['src'] . "\n * @size " . $this->CTRL->admin->human_filesize(strlen($file['inlinecode'])) . "\n * @media ".implode(', ',$file['media']) . "\n * @position ".$file_number."\n */\n\n";
 
 						$json_result['css'][] = array(
 							'file' => $file_number . '-' . $file['src'] . '.css',
@@ -514,7 +516,7 @@ class Abovethefold_Admin_BuildTool {
 						);
 					} else {
 
-						$header = "/**\n * CSS file exported from ".$url."\n *\n * @file " . $file['src'] . "\n * @size " . $this->human_filesize(strlen($file['code'])) . "\n * @media ".implode(', ',$file['media']) . "\n * @position ".$file_number."\n  */\n\n";
+						$header = "/**\n * CSS file exported from ".$url."\n *\n * @file " . $file['src'] . "\n * @size " . $this->CTRL->admin->human_filesize(strlen($file['code'])) . "\n * @media ".implode(', ',$file['media']) . "\n * @position ".$file_number."\n  */\n\n";
 
 						// media query
 						$json_result['css'][] = array(
@@ -528,16 +530,6 @@ class Abovethefold_Admin_BuildTool {
 
 		return $json_result;
     }
-
-
-    /**
-     * File size
-     */
-    public function human_filesize($bytes, $decimals = 2) {
-	    $size = array('B','kB','MB','GB','TB','PB','EB','ZB','YB');
-	    $factor = floor((strlen($bytes) - 1) / 3);
-	    return sprintf("%.{$decimals}f", $bytes / pow(1024, $factor)) . @$size[$factor];
-	}
 
 	/**
 	 * Installed

@@ -171,7 +171,7 @@ class Abovethefold_ExtractFullCss {
 					// get CSS code
 					$css = $this->CTRL->remote_get($url);
 					if (trim($css) === '') {
-						continue 1;
+						continue 1; 
 					}
 
 					if ($files && !in_array(md5($url),$files)) {
@@ -181,7 +181,9 @@ class Abovethefold_ExtractFullCss {
 					if (preg_match('|url\s*\(|Ui',$css)) {
 
 						// convert root-relative to absolute urls
-						$css = preg_replace('/url\(\s*[\'"]?\/([^\/][^\)]+)[\'"]?\s*\)/i', 'url(' . $fileurl['scheme'] . '://' . $fileurl['host'] . '/$1)', $css);
+						$css = preg_replace('/url\(\s*([\'"])\/([^\/][^\)]+)[\'"]\s*\)/i', 'url($1' . $fileurl['scheme'] . '://' . $fileurl['host'] . '/$2$1)', $css);
+						// convert root-relative to absolute urls
+						$css = preg_replace('/url\(\s*\/([^\/][^\)]+)\s*\)/i', 'url(' . $fileurl['scheme'] . '://' . $fileurl['host'] . '/$1)', $css);
 
 						// convert relative to absolute urls
 						$basename = basename($fileurl['path']);
@@ -189,7 +191,8 @@ class Abovethefold_ExtractFullCss {
 						if (!$path || $path === '/') {
 							$path = '/';
 						}
-						$css = preg_replace('/url\(\s*[\'"]?(?!(http|https):)([a-z0-9\.][^\)]+)[\'"]?\s*\)/i', 'url(' . $fileurl['scheme'] . '://' . $fileurl['host'] . $path . '$2)', $css);
+						$css = preg_replace('/url\(\s*([\'"])(?!(http|https):)([a-z0-9\.][^\)]+)[\'"]\s*\)/i', 'url($1' . $fileurl['scheme'] . '://' . $fileurl['host'] . $path . '$3$1)', $css);
+						$css = preg_replace('/url\(\s*(?!(http|https):)([a-z0-9\.][^\)]+)\s*\)/i', 'url($1' . $fileurl['scheme'] . '://' . $fileurl['host'] . $path . '$2)', $css);
 					}
 
 					$csscode[] = array($media,$css);
@@ -208,7 +211,8 @@ class Abovethefold_ExtractFullCss {
 					if (preg_match('|url\s*\(|Ui',$css)) {
 
 						// convert root-relative to absolute urls
-						$css = preg_replace('/url\(\s*[\'"]?\/([^\/][^\)]+)[\'"]?\s*\)/i', 'url(' . $fileurl['scheme'] . '://' . $fileurl['host'] . '/$1)', $css);
+						$css = preg_replace('/url\(\s*([\'"])\/([^\/][^\)]+)[\'"]\s*\)/i', 'url($1' . $fileurl['scheme'] . '://' . $fileurl['host'] . '/$2$1)', $css);
+						$css = preg_replace('/url\(\s*\/([^\/][^\)]+)\s*\)/i', 'url(' . $fileurl['scheme'] . '://' . $fileurl['host'] . '/$1)', $css);
 
 						// convert relative to absolute urls
 						$basename = basename($fileurl['path']);
@@ -216,7 +220,8 @@ class Abovethefold_ExtractFullCss {
 						if (!$path || $path === '/') {
 							$path = '/';
 						}
-						$css = preg_replace('/url\(\s*[\'"]?(?!(http|https|data):)([a-z0-9\.][^\)]+)[\'"]?\s*\)/i', 'url(' . $fileurl['scheme'] . '://' . $fileurl['host'] . $path . '$2)', $css);
+						$css = preg_replace('/url\(\s*([\'"])(?!(http|https|data):)([a-z0-9\.][^\)]+)[\'"]\s*\)/i', 'url($1' . $fileurl['scheme'] . '://' . $fileurl['host'] . $path . '$3$1)', $css);
+						$css = preg_replace('/url\(\s*(?!(http|https|data):)([a-z0-9\.][^\)]+)[\'"]?\s*\)/i', 'url(' . $fileurl['scheme'] . '://' . $fileurl['host'] . $path . '$2)', $css);
 					}
 
 					$csscode[] = array($media,$css);
@@ -225,7 +230,7 @@ class Abovethefold_ExtractFullCss {
 				if ($store_cssfiles) {
 
 					$cssfiles[] = array(
-						'src' => $url,
+						'src' => $url, 
 						'code' => $css,
 						'media' => $media
 					);

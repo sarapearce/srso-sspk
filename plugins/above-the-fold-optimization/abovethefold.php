@@ -12,17 +12,22 @@
  * Plugin Name:       Above The Fold Optimization
  * Plugin URI:        https://pagespeed.pro/
  * Description:       Above the fold optimization toolkit that enables to achieve a <a href="https://developers.google.com/speed/docs/insights/about" target="_blank">Google PageSpeed</a> 100 Score. Supports most optimization, minification and full page cache plugins.
- * Version:           2.6.17
+ * Version:           2.7.10
  * Author:            PageSpeed.pro
  * Author URI:        https://pagespeed.pro/
  * Text Domain:       abovethefold
  * Domain Path:       /languages
  */
 
-define('WPABTF_VERSION','2.6.17');
+define('WPABTF_VERSION','2.7.10');
 define('WPABTF_URI', plugin_dir_url( __FILE__ ));
 define('WPABTF_PATH', plugin_dir_path( __FILE__ ));
 define('WPABTF_SELF', __FILE__);
+
+# cache directory
+define('ABTF_CACHE_DIR', trailingslashit(WP_CONTENT_DIR) . 'cache/abtf/');
+define('ABTF_CACHE_URL', trailingslashit(WP_CONTENT_URL) . 'cache/abtf/');
+
 if ( ! defined( 'WPINC' ) ) {
 	die;
 }

@@ -1,4 +1,6 @@
-<form method="post" action="<?php echo admin_url('admin-post.php?action=abtf_css_update'); ?>" class="clearfix">
+<?php
+
+?><form method="post" action="<?php echo admin_url('admin-post.php?action=abtf_css_update'); ?>" class="clearfix" enctype="multipart/form-data">
 	<?php wp_nonce_field('abovethefold'); ?>
 	<div class="wrap abovethefold-wrapper">
 		<div id="poststuff">
@@ -170,7 +172,7 @@
 															<p class="description">Enter the <code>WebFontConfig</code> variable for Google Web Font Loader. Leave blank for the default configuration. (<a href="https://github.com/typekit/webfontloader#configuration" target="_blank">more information</a>)</p>
 														</td>
 													</tr>
-													<tr valign="top">
+													<tr valign="top" class="gwfloadoptions">
 														<th scope="row">Google Web Fonts</th>
 														<td>
 															<div class="gwfloadoptions" style="<?php if (isset($options['gwfo_loadmethod']) && $options['gwfo_loadmethod'] === 'disabled') { print 'display:none;'; } ?>">
@@ -184,10 +186,33 @@
 																<br />
 															</div>
 
-															<h4 class="h" style="margin-bottom:10px;margin-top:0px;">Local Font Loading</h4>
-															<p class="description">Google Fonts are served from <code>fonts.googleapis.com</code> that is causing a render-blocking warning in the Google PageSpeed test. The Google fonts stylesheet cannot be cached by the <em>external resource proxy</em> because it serves different content based on the client.</p>
-															<p class="description" style="margin-top:7px;">To solve the PageSpeed Score issue while also achieving the best font render performance, it is possible to download the Google fonts and load them locally (from the critical CSS). Loading Google fonts locally enables to achieve a Google PageSpeed 100 Score while also preventing a font flicker effect during navigation.</p>
-															<p class="description" style="margin-top:7px;">Check out <a href="https://google-webfonts-helper.herokuapp.com/fonts#utm_source=wordpress&amp;utm_medium=plugin&amp;utm_term=optimization&amp;utm_campaign=PageSpeed.pro%3A%20Above%20The%20Fold%20Optimization" target="_blank">Google Webfonts Helper</a> for a solution to download Google fonts.</p>
+														</td>
+													</tr>
+													<tr valign="top">
+														<th scope="row">Local Font Loading</th>
+														<td>
+															<p>Google Fonts are served from <code>fonts.googleapis.com</code> that is causing a render-blocking warning in the Google PageSpeed test. The Google fonts stylesheet cannot be cached by the <a href="<?php echo add_query_arg( array( 'page' => 'abovethefold', 'tab' => 'proxy' ), admin_url( 'admin.php' ) ); ?>">external resource proxy</a> because it serves different content based on the client.</p>
+															<p style="margin-top:7px;">To solve the PageSpeed Score issue while also achieving the best font render performance, it is possible to download the Google fonts and load them locally (from the critical CSS). Loading Google fonts locally enables to achieve a Google PageSpeed 100 Score while also preventing a font flicker effect during navigation.</p>
+
+															<br />
+															<h1>How to place Google Fonts locally</h1>
+
+
+															<p>Select the option "<em>Disabled (remove all fonts)</em>" from the webfont.js Load Method menu (above) to remove dynamic and static Google fonts from the HTML and CSS.</p>
+															
+															<h4 class="h" style="margin-bottom:10px;margin-top:15px;">Step 1: download the font files and CSS</h4>
+
+															
+															<p style="margin-top:7px;">Visit <a href="https://google-webfonts-helper.herokuapp.com/fonts?utm_source=wordpress&amp;utm_medium=plugin&amp;utm_term=optimization&amp;utm_campaign=PageSpeed.pro%3A%20Above%20The%20Fold%20Optimization" target="_blank">Google Webfonts Helper</a> and search for the fonts that you want to download. Select the font configuration (weight, charset and style) and download the zip-file.</p>
+
+															<h4 class="h" style="margin-bottom:10px;margin-top:10px;">Step 2: upload the fonts to your theme directory</h4>
+															<p style="margin-top:7px;">Extract the zip-file and upload the font files to <code>/fonts/</code> in your theme directory. Optionally, use the file upload to extract the zip-file in your theme directory automatically (requires PHP5).</p>
+															<p style="margin-top:7px;"><input type="file" name="googlefontzip"> <button type="submit" name="uploadgooglefontzip" class="button button-small">Upload &amp; Extract</button></p>
+
+															<h4 class="h" style="margin-bottom:10px;margin-top:10px;">Step 3: create a Conditional Critical Path CSS entry for Google Fonts</h4>
+															<p style="margin-top:7px;">Create a Conditional Critical Path CSS entry without conditions and select the <code>@appendToAny</code> option.</p>
+															<p>Enter the Google Font CSS into the CSS input field.</p>
+															<p>Change the paths of the fonts to the location of the fonts in your theme directory, e.g. <code><?php print htmlentities(str_replace(ABSPATH,'/',trailingslashit(get_stylesheet_directory()) . 'fonts/'),ENT_COMPAT,'utf-8'); ?></code> and <a href="https://www.google.com/search?q=minify+css+online&amp;hl=<?php print $lgcode;?>" target="_blank" class="button button-secondary button-small">minify</a> the CSS.</p>
 														</td>
 													</tr>
 												</table>

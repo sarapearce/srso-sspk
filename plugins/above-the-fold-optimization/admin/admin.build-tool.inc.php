@@ -1,7 +1,5 @@
 <?php
 
-	$conditionalcss_enabled = (isset($options['conditionalcss_enabled']) && intval($options['conditionalcss_enabled']) === 1) ? true : false;
-
 	$default = get_option('abtf-build-tool-default');
 	if (!is_array($default)) { $default = array(); }
 
@@ -69,19 +67,21 @@
 
 						                                     <select name="update" class="wp-update-select">
 						                                     	<option value=""<?php if (!$update) { print ' selected="selected"'; } ?>>Do not update (store result in /package/output/)</option>
-						                                     	<option value="global"<?php if ($update === 'global') { print ' selected="selected"'; } ?>>Overwrite global Critical CSS</option>
+						                                     	<option value="global.css"<?php if ($update === 'global') { print ' selected="selected"'; } ?>>Overwrite global Critical CSS</option>
 <?php
-
-	if ($conditionalcss_enabled && !empty($options['conditional_css'])) {
+	$criticalcss_files = $this->CTRL->criticalcss->get_theme_criticalcss();
+	if ($criticalcss_files && count($criticalcss_files) > 1) {
 
 		print '<optgroup label="Conditional Critical CSS">';
 
-		foreach ($options['conditional_css'] as $condition_hash => $cCSS) {
-			print '<option value="'.htmlentities($condition_hash,ENT_COMPAT,'utf-8').'"'.(($update && is_array($update) && $update['key'] === $condition_hash) ? ' selected="selected"' : '').'>Overwrite "'.htmlentities($cCSS['name'],ENT_COMPAT,'utf-8').'"</option>';
+		foreach ($criticalcss_files as $file => $config) {
+			if ($file === 'global.css') {
+				continue 1;
+			}
+			print '<option value="'.htmlentities($file,ENT_COMPAT,'utf-8').'"'.(($update === $file) ? ' selected="selected"' : '').'>Overwrite '.htmlentities($file . ' - ' . $config['name'],ENT_COMPAT,'utf-8').'</option>';
 		}
 
 		print '</optgroup>';
-
 	} else {
 
 		print '<option value="" disabled="disabled">Conditional Critical CSS is disabled</option>';

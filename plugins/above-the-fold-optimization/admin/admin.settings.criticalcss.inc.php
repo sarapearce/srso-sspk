@@ -1,15 +1,11 @@
 <li class="menu-item menu-item-depth-0 menu-item-page pending menu-item-edit-inactive" style="display: list-item; position: relative; top: 0px;">
-
 <?php
+
+	// get critical css files
+	$criticalcss_files = $this->CTRL->criticalcss->get_theme_criticalcss();
 	
-	/**
-	 * Read global critical CSS
-	 */
-	$inlinecss = '';
-	$cssfile = $this->CTRL->cache_path() . 'criticalcss_global.css';
-	if (file_exists($cssfile)) {
-		$inlinecss = file_get_contents($cssfile);
-	}
+	//global critical CSS
+	$inlinecss = (isset($criticalcss_files['global.css'])) ? $this->CTRL->criticalcss->get_file_contents($criticalcss_files['global.css']['file']) : '';
 ?>
 	<div class="menu-item-bar criticalcss-edit-header" rel="global">
 		<div class="menu-item-handle" style="width:auto!important;cursor: pointer;">
@@ -44,9 +40,7 @@
 
 		<div style="clear:both;height:1px;overflow:hidden;font-size:1px;">&nbsp;</div>
 
-
 		<ul class="menu-item-transport"></ul>
-
 
 		<hr />
 		<?php

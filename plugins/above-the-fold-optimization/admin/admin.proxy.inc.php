@@ -36,6 +36,9 @@
 		$cssPreload = '';
 	}
 
+	// cache stats
+	$cache_stats = $this->CTRL->proxy->cache_stats();
+
 ?>
 <form method="post" action="<?php echo admin_url('admin-post.php?action=abtf_proxy_update'); ?>" class="clearfix">
 	<?php wp_nonce_field('abovethefold'); ?>
@@ -44,12 +47,17 @@
 			<div id="post-body" class="metabox-holder">
 				<div id="post-body-content">
 					<div class="postbox">
+
+						<div style="float:right;z-index:9000;position:relative;"><img src="<?php print WPABTF_URI; ?>admin/images/browsercache-error.png" alt="Google Bot" width="350" title="Google Webmasters Monitor"></div>
+
 						<h3 class="hndle">
 							<span><?php _e( 'External Resource Proxy', 'abovethefold' ); ?></span>
 						</h3>
 						<div class="inside testcontent">
 
-							<p>The external resource proxy loads external resources such as scripts and stylesheets via a caching proxy. This feature enables to pass the <a href="https://developers.google.com/speed/docs/insights/LeverageBrowserCaching?hl=<?php print $lgcode;?>" target="_blank">Leverage browser caching</a> rule from Google PageSpeed Insights.</p>
+							<p>The external resource proxy loads external resources such as scripts and stylesheets via a caching proxy.</p>
+
+							<p>This feature enables to pass the <a href="https://developers.google.com/speed/docs/insights/LeverageBrowserCaching?hl=<?php print $lgcode;?>" target="_blank">Leverage browser caching</a> rule from Google PageSpeed Insights.</p>
 
 							<table class="form-table">
 								
@@ -113,7 +121,13 @@
 										<h5 class="h">&nbsp;Proxy Preload List</h5>
 										<textarea style="width: 100%;height:50px;font-size:11px;" name="abovethefold[css_proxy_preload]"><?php if ($cssPreload !== '') { echo $cssPreload; } ?></textarea>
 										<p class="description">Enter the exact url or JSON config object of external stylesheets to preload for "script injected" async stylesheet capture, e.g. <code>http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css</code>. This setting will enable the proxy to load the cache url instead of the WordPress PHP proxy url. One url or JSON object per line.</p>
-										
+										</fieldset>
+									</td>
+								</tr>
+								
+								<tr valign="top">
+									<th scope="row">&nbsp;</th>
+									<td style="padding-top:0px;">
 										<a name="jsoncnf">&nbsp;</a>
 										<fieldset style="border:solid 1px #efefef;padding:10px;margin:0px;margin-top:7px;background:#f1f1f1;">
 											<h4 style="margin:0px;padding:0px;margin-bottom:5px;">JSON Proxy Config Object</h4>
@@ -124,7 +138,6 @@
 										</fieldset>
 									</td>
 								</tr>
-								
 								<tr valign="top">
 									<th scope="row">Proxy CDN</th>
 									<td>
@@ -146,6 +159,32 @@
 							<?php
 								submit_button( __( 'Save' ), 'primary large', 'is_submit', false );
 							?>
+
+							<br /><br />
+
+							<h3 style="margin:0px;padding:0px;" id="stats">Cache Stats<a name="stats">&nbsp;</a></h3>
+							<table>
+								<tbody>
+									<tr>
+										<td align="right" width="70" style="text-align:right;font-size:14px;">Files:</td>
+										<td style="font-size:14px;"><?php echo number_format_i18n( $cache_stats['files'], 0 ); ?></td>
+									</tr>
+									<tr>
+										<td align="right" width="70" style="text-align:right;font-size:14px;">Size:</td>
+										<td style="font-size:14px;"><?php echo $this->CTRL->admin->human_filesize($cache_stats['size']); ?></td>
+									</tr>
+								</tbody>
+								<tfoot>
+									<tr>
+										<td colspan="2" style="padding:0px;margin:0px;font-size:11px;">
+											<p style="padding:0px;margin:0px;font-size:11px;">Stats last updated: <?php echo date('r',$cache_stats['date']); ?></p>
+											<hr />
+											<a href="<?php echo add_query_arg( array( 'page' => 'abovethefold', 'tab' => 'proxy', 'update_cache_stats' => 1 ), admin_url( 'admin.php' ) ); ?>" class="button button-small">Refresh Stats</a>
+											<a href="<?php echo add_query_arg( array( 'page' => 'abovethefold', 'tab' => 'proxy', 'empty_cache' => 1 ), admin_url( 'admin.php' ) ); ?>" onclick="if (!confirm('Are you sure you want to empty the cache directory?',true)) { return false; } " class="button button-small">Empty Cache</a>
+										</td>
+									</tr>
+								</tfoot>
+							</table>
 						</div>
 					</div>
 				</div>

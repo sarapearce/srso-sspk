@@ -329,6 +329,57 @@
 }
 
 
+.edit-conditional-critical-css .selectize-control.multi .selectize-input div.filter {
+    cursor: pointer;
+    margin: 0 3px 3px 0;
+    padding: 2px 6px;
+    background: #B4B9BE;
+    color: #fff;
+    border: 1px solid #B4B9BE;
+    text-shadow: 0 1px 0 rgba(0,51,83,.3);
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    background-color: #DDD;
+    background-image: -moz-linear-gradient(top,#DDD,#B4B9BE);
+    background-image: -webkit-gradient(linear,0 0,0 100%,from(#DDD),to(#B4B9BE));
+    background-image: -webkit-linear-gradient(top,#DDD,#B4B9BE);
+    background-image: -o-linear-gradient(top,#DDD,#B4B9BE);
+    background-image: linear-gradient(to bottom,#DDD,#B4B9BE);
+    background-repeat: repeat-x;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#DDD', endColorstr='#B4B9BE', GradientType=0);
+    -webkit-box-shadow: 0 1px 0 rgba(0,0,0,.2),inset 0 1px rgba(255,255,255,.03);
+    box-shadow: 0 1px 0 rgba(0,0,0,.2),inset 0 1px rgba(255,255,255,.03);
+}
+.edit-conditional-critical-css .selectize-control.multi .selectize-input div.filter .remove {
+	border-left: 1px solid #DDD;
+}
+.edit-conditional-critical-css .selectize-control.multi .selectize-input div.woocommerce {
+    cursor: pointer;
+    margin: 0 3px 3px 0;
+    padding: 2px 6px;
+    background: #079c2d;
+    color: #fff;
+    border: 1px solid #079c2d;
+    text-shadow: 0 1px 0 rgba(0,51,83,.3);
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    background-color: #19C244;
+    background-image: -moz-linear-gradient(top,#19C244,#079c2d);
+    background-image: -webkit-gradient(linear,0 0,0 100%,from(#19C244),to(#079c2d));
+    background-image: -webkit-linear-gradient(top,#19C244,#079c2d);
+    background-image: -o-linear-gradient(top,#19C244,#079c2d);
+    background-image: linear-gradient(to bottom,#19C244,#079c2d);
+    background-repeat: repeat-x;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#19C244', endColorstr='#079c2d', GradientType=0);
+    -webkit-box-shadow: 0 1px 0 rgba(0,0,0,.2),inset 0 1px rgba(255,255,255,.03);
+    box-shadow: 0 1px 0 rgba(0,0,0,.2),inset 0 1px rgba(255,255,255,.03);
+}
+.edit-conditional-critical-css .selectize-control.multi .selectize-input div.woocommerce .remove {
+	border-left: 1px solid #19C244;
+}
+
 .edit-conditional-critical-css .optgroup-post {
 	display:inline-block;
 	width:15px;
@@ -366,6 +417,31 @@
 	font-size:1px;
 	margin-right:5px;
 }
+.edit-conditional-critical-css .opt .desc {
+	font-weight:thin;
+	color:#999;
+}
+.edit-conditional-critical-css .optgroup-filter {
+	display:inline-block;
+	width:15px;
+	height:10px;
+	background-color: #ddd;
+	color:white;
+	font-size:1px;
+	margin-right:5px;
+}
+
+.edit-conditional-critical-css .optgroup-woocommerce {
+	display:inline-block;
+	width:15px;
+	height:10px;
+	background-color: #079c2d;
+	color:white;
+	font-size:1px;
+	margin-right:5px;
+}
+
+
 
 .testcontent .selectize-control.multi .selectize-dropdown [data-value] {
 	font-size:10px;

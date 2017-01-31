@@ -25,14 +25,14 @@
             <div class="container-fluid right col-md-12 col-sm-12">
                 <div class="row">
                     <div class="span8 center-block">
-                            <?php
-                            $logo = esc_url(get_theme_mod("logo-upload"));
-                            ?>
-                            <a href="<?php echo esc_url(home_url('/')); ?>">
-                                <?php echo (strlen($logo) > 0) ? '<img align="middle" src="' . $logo . '" alt="logo" class="custom-logo center-block" />' : get_bloginfo('name'); ?>
-                            </a>
+                        <?php
+                        $logo = esc_url(get_theme_mod("logo-upload"));
+                        ?>
+                        <a href="<?php echo esc_url(home_url('/')); ?>">
+                            <?php echo (strlen($logo) > 0) ? '<img align="middle" src="' . $logo . '" alt="logo" class="custom-logo center-block" />' : get_bloginfo('name'); ?>
+                        </a>
                     </div>
-                   
+
                 </div>
             </div><!-- container -->
         </header>
@@ -43,15 +43,15 @@
                     <nav class="main_nav">
                     </nav>
                 </div>
-
+         
                 <!--top_bar-->
                 <div class="top_bar container-fluid">
                     <div class="row">
-                        <nav class="top_nav col-sm-4">
+<!--                        <div class="top_nav col-sm-4">
                             <a href="https://madmimi.com/signups/315876/join" title="Subscribe" data-toggle="popover" data-placement="right" 
                                data-content="" class="btn subscribe-btn">Subscribe</a>
-                        </nav>
-                        <nav class="top_nav col-sm-4 right" style="padding-left: 8%;">
+                        </div>-->
+                        <div class="top_nav col-sm-4 right top_bar_nav">
 
                             <?php
                             $arg = array(
@@ -64,10 +64,10 @@
 
                             wp_nav_menu($arg);
                             ?>
-                        </nav>
+                        </div>
 
 
-                        <nav class="social col-sm-4 ">
+                        <div class="social col-sm-4">
                             <ul>
                                 <?php
                                 $facebook_link = esc_url(get_theme_mod("facebook_link"));
@@ -102,11 +102,16 @@
                                 }
                                 ?>
                             </ul>
-                        </nav>
+                        </div>
                         <div class="clearfix"></div>
                     </div>
                 </div>
+                
                 <!-- top_bar -->
-            </div><!--nav_wrapper -->
+          
             <div class="container-fluid content_wrapper" id="content_wrapper">
 
+
+                <script type="text/javascript">
+                    jQuery(".gum_breadcrumb").remove();
+                </script>

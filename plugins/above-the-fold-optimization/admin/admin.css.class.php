@@ -50,6 +50,56 @@ class Abovethefold_Admin_CSS {
 
 		check_admin_referer('abovethefold');
 
+		if (isset($_POST['uploadgooglefontzip'])) {
+
+			/**
+			 * Extract Google Fonts
+			 */
+			if (!empty($_FILES) && $_FILES['googlefontzip'] && $_FILES['googlefontzip']['name']) {
+				if ($_FILES['googlefontzip']['error']) {
+					$this->CTRL->admin->set_notice('Google Font zip-file upload error: ' . $_FILES['googlefontzip']['error'], 'ERROR');
+				} else {
+
+					if (!class_exists('ZipArchive')) {
+						$this->CTRL->admin->set_notice('Your PHP installation does not support <a href="http://php.net/manual/en/ziparchive.extractto.php" target="_blank">ZipArchive</a>.', 'ERROR');
+					} else {
+
+						$fontsdir = trailingslashit(get_stylesheet_directory()) . 'fonts/';
+						if (!is_dir($fontsdir)) {
+							// create fonts directory
+							if (!$this->CTRL->mkdir( $fontsdir )) {
+								$this->CTRL->admin->set_notice('Failed to create font directory '.htmlentities(str_replace(ABSPATH,'/',trailingslashit(get_stylesheet_directory()) . 'fonts/'),ENT_COMPAT,'utf-8').'', 'ERROR');
+							}
+						}
+
+						// try to open zip]
+						$zip = new ZipArchive;
+						if ($zip->open($_FILES['googlefontzip']['tmp_name']) === TRUE) {
+						    $zip->extractTo($fontsdir);
+						    $zip->close();
+
+						    // Set file permissions to make fonts writable by FTP
+						    $fontfiles = array_diff(scandir($fontsdir), array('..', '.'));
+						    foreach ($fontfiles as $fontfile) {
+
+						    	// font files only
+						    	if (is_file($fontsdir . $fontfile) && preg_match('#\.(eot|woff|woff2|svg|ttf)$#Ui',$fontfile)) {
+						    		@chmod($fontsdir . $fontfile, 0666);
+						    	}
+						    }
+
+						    $this->CTRL->admin->set_notice('<p style="font-size:18px;">Google Font zip-file extracted successfully.</p>', 'NOTICE');
+						} else {
+						    $this->CTRL->admin->set_notice('Failed to read Google Font zip-file.', 'ERROR');
+						}
+					}
+				}
+			}
+			
+			wp_redirect( add_query_arg( array( 'page' => 'abovethefold', 'tab' => 'css' ), admin_url( 'admin.php' ) ) );
+			exit;
+		}
+
 		// @link https://codex.wordpress.org/Function_Reference/stripslashes_deep
 		$_POST = array_map( 'stripslashes_deep', $_POST );
 

@@ -20,6 +20,7 @@ if (defined('JSON_PRETTY_PRINT')) {
 	$encodeflag = true;
 }
 $cssfilejson = json_encode($taskjs_cssfiles,$encodeflag);
+$criticalcss_dir = $this->CTRL->theme_path( 'critical-css' );
 
 $width = 1300;
 $height = 900;
@@ -50,10 +51,8 @@ if (isset($settings['dimensions']) && !empty($settings['dimensions'])) {
 <?php
 	if ($settings['update']) {
 		print " *\n * @warning This task automatically updates WordPress Critical CSS.\n";
-		if ($settings['update'] === 'global') {
-			print " * @criticalcss global\n";
-		} else if (is_array($settings['update'])) {
-			print " * @criticalcss ".$settings['update']['key']." (conditional)\n";
+		if ($settings['update']) {
+			print " * @criticalcss ".$settings['update']."\n";
 		}
 	}
 ?>
@@ -87,6 +86,27 @@ module.exports = function (gulp, plugins, critical) {
     		extraCSS = true;
         }
 
+<?php
+	if ($settings['update']) {
+?>
+		// check if css file exists in package
+    	if (plugins.fs.existsSync('css/' + <?php print json_encode($settings['update']); ?>)) {
+
+    		// extract config comment to preserve on auto update
+    		var csscontent = plugins.fs.readFileSync('css/' + <?php print json_encode($settings['update']); ?>, 'utf-8');
+			var match = csscontent.match(/\/\*\*(.|\n)+?\*\//g);
+			if (!match || !match[0]) {
+				throw new Error(<?php print json_encode($settings['update']); ?> + ' does not contain a valid config header.');
+            	return false;
+			}
+    		var configheader = match[0] + '\n';
+        } else {
+        	var configheader = '/*\n * '+<?php print json_encode($settings['update']); ?>+'\n */\n';
+        }
+<?php
+	}
+?>
+
         // optimization tasks
         var TASKS = {};
 
@@ -108,7 +128,7 @@ module.exports = function (gulp, plugins, critical) {
         // create citical CSS
         TASKS['critical'] = function() {
 
-        	console.log('\n' + plugins.util.colors.yellow.bold('Creating <?php if ($settings['update'] && $settings['update'] !== 'global') { print 'Conditional '; } ?>Critical Path CSS...'));
+        	console.log('\n' + plugins.util.colors.yellow.bold('Creating <?php if ($settings['update'] && $settings['update'] !== 'global.css') { print 'Conditional '; } ?>Critical Path CSS...'));
 
 			/**
 	    	 * Perform critical CSS generation
@@ -118,7 +138,7 @@ module.exports = function (gulp, plugins, critical) {
 		        inline: false, // generate
 		        base: taskpath ,
 		        src: 'page.html',
-		        dest: taskpath + 'output/critical.css',
+		        dest: 'output/critical.css',
 		        minify: false,
 				css: <?php print str_replace('"TASKPATH','taskpath + "',$cssfilejson); ?>,
 				extract: false,
@@ -169,7 +189,9 @@ module.exports = function (gulp, plugins, critical) {
 			            "advanced": true,
 			            "aggressiveMerging": true,
 			            "showLog": true
-					}))
+					}))<?php if ($settings['update']) {
+						print '.pipe(plugins.header(configheader))';
+					} ?>
     				.pipe(plugins.rename({ suffix: '.min' }))
 			        .pipe(gulp.dest(taskpath + 'output/'))
 	    			.on('error', reject)
@@ -186,7 +208,7 @@ module.exports = function (gulp, plugins, critical) {
 		print 'resolve();';
 	} else {
 
-		$filename = ($settings['update'] === 'global') ? 'criticalcss_global.css' : 'criticalcss_' . $settings['update']['key'] . '.css';
+		$filename = $settings['update'];
 
 		// default 664
 		$permissions = array(
@@ -207,7 +229,8 @@ module.exports = function (gulp, plugins, critical) {
             )
         ); 
 
-		$chmod = (string)decoct($this->CTRL->CHMOD_FILE);
+		$chmodfile = ( ! defined('FS_CHMOD_FILE') ) ? intval( substr(sprintf('%o', fileperms( ABSPATH . 'index.php' )),-4), 8 ) : FS_CHMOD_FILE;
+		$chmod = (string)decoct($chmodfile);
 		if (strlen($chmod) === 3) {
 
 			$chmodparts = str_split($chmod);
@@ -233,15 +256,15 @@ module.exports = function (gulp, plugins, critical) {
 		}
 
 ?>
-				console.log('\n' + plugins.util.colors.green.bold('Update <?php if ($settings['update'] !== 'global') { print 'Conditional '; } ?>Critical CSS storage file...'));
-				console.log(' ➤ ' + plugins.util.colors.green('/wp-content/uploads/abovethefold/<?php print $filename; ?>'));
+				console.log('\n' + plugins.util.colors.green.bold('Update <?php if ($settings['update'] !== 'global.css') { print 'Conditional '; } ?>Critical CSS storage file...'));
+				console.log(' ➤ ' + plugins.util.colors.green('/abovethefold/css/<?php print $filename; ?>'));
 
 				// append extra.css
 				gulp.src([taskpath + 'output/critical.min.css'])
     				.pipe(plugins.rename('<?php print $filename; ?>'))
     				.pipe(plugins.chmod(<?php print json_encode($permissions,$encodeflag); ?>)) // WordPress permissions
     				.pipe(plugins.chown(<?php print (string) getmyuid() . "," . (string) getmygid(); ?>)) // set to PHP user
-			        .pipe(gulp.dest('../../../uploads/abovethefold'))
+			        .pipe(gulp.dest('css'))
 			        .pipe(plugins.es.map(function(file, callback) {
 		                plugins.fs.chown(file.path, file.stat.uid, file.stat.gid, callback);
 		            }))

@@ -73,103 +73,141 @@ jQuery(function() {
     }
 
     // load condition selectize for editor
-    var loadConditionSelect = function(editor_id) {
-        if (!window.addccConditions) {
-            window.addccConditions = jQuery.parseJSON(jQuery('#addcc_condition_options').val());
-        }
-
-        if (jQuery('.conditions select',jQuery('#ccss_editor_' + editor_id)).length === 0) {
+    window.loadConditionSelect = function(selectizeInput) {
+        
+        if (jQuery(selectizeInput).length === 0) {
             return;
         }
 
-        var select = jQuery('.conditions select',jQuery('#ccss_editor_' + editor_id));
+        jQuery(selectizeInput).val('');
 
-        var selected_conditions = select.data('conditions');
-
-        if (typeof selected_conditions === 'string') {
-            selected_conditions = jQuery.parseJSON(selected_conditions);
-        }
-
-        select.empty();
-
-        select.append(jQuery('<option value=""></option>'));
-
-        var optgroupRegex = new RegExp('^<optgroup','i');
-        var optgroupEndRegex = new RegExp('^</optgroup','i');
-        var optionRegex = new RegExp('^<option','i');
-
-        var opt,optgroup,option;
-        for (var i = 0; i < window.addccConditions.length; i++) {
-            opt = window.addccConditions[i];
-
-            if (optgroupRegex.test(opt)) {
-                optgroup = jQuery(opt);
-            }
-            if (optgroupEndRegex.test(opt)) {
-                select.append(optgroup);
-                optgroup = false;
-            }
-            if (optionRegex.test(opt)) {
-                option = jQuery(opt);
-                if (selected_conditions.indexOf(option.val()) > -1) {
-                    option.prop('selected',true);
-                }
-                if (optgroup) {
-                    optgroup.append(option);
-                } else {
-                    select.append(option);
-                }
-            }
-        }
-
-        // load selectize
-        var conditionSelect = select.selectize({
-            persist         : true,
-            placeholder     : "Select one or more conditions...",
+        /**
+         * Populate selectmenu
+         */
+        var selectize = jQuery(selectizeInput).selectize({
+            options: [],
+            searchField: ['title', 'titlelong', 'value'],
+            persist : true,
+            optgroupField: 'optgroup',
+            placeholder: "Select one or more conditions. Type the name of a page or post to search (autocomplete)...",
+            delimiter: '|==abtf==|',
             render: {
                 optgroup_header: function(item, escape) {
-                    return '<div class="optgroup-header "><span class="'+item.class+'">&nbsp;</span>' + escape(item.label) + '</div>';
+                    return '<div class="optgroup-header "><span class="'+item.class+'">&nbsp;</span>' + escape(item.title) + '</div>';
                 },
                 option: function(item, escape) {
-                    return '<div>' +
+                    return '<div class="opt">' +
                         '<span class="title">' +
-                            '<span class="name">' + escape(item.text) + '</span>' +
+                            '<span class="name">' + escape((item.titlelong) ? item.titlelong : item.title) + '</span>' +
+                            '<span class="desc">&nbsp;&nbsp;' + escape(item.value) + '</span>' +
                         '</span>' +
                     '</div>';
                 },
                 item: function(item, escape) {
-                    return '<div class="'+item.class+'" title="' + escape(item.text) + '">' +
-                        '<span class="name">' + escape(item.title||item.text) + '</span>' +
+                    return '<div class="'+item.class+'" title="' + escape(item.value) + ((item.titlelong) ? ' - ' + escape(item.titlelong) : '') + '">' +
+                        '<span class="name">' + escape(item.title) + '</span>' +
                     '</div>';
                 }
             },
-            plugins         : ['remove_button']
+            createFilter: function(input) {
+                var match, regex;
+
+                // email@address.com
+                regex = new RegExp('^filter:([a-z0-9\-\_]+(:.*)?)?$', 'i');
+                if (regex.test(input)) return input;
+
+                return false;
+            },
+            create: function(input) {
+                if ((new RegExp('^filter:[a-z0-9\-\_]+(:.*)?$', 'i')).test(input)) {
+                    return {
+                        'value': input,
+                        'title': input,
+                        'optgroup': 'filter',
+                        'class': 'filter'
+                    };
+                }
+                return false;
+            },
+            load: function (query, callback) {
+                if (!query.length) return callback();
+                jQuery.ajax({
+                    url: ajaxurl,
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {
+                        action: 'abtf_condition_search',
+                        query: query,
+                        maxresults: 10
+                    },
+                    error: function () {
+                        callback();
+                    },
+                    success: function (res) {
+                        callback(res);
+                    }
+                });
+            },
+            plugins: ['remove_button']
         });
+
+        // insert default options
+        var opt,optgroup;
+        for (optgroup in window.conditional_options[1]) {
+            if (!window.conditional_options[1].hasOwnProperty(optgroup)) {
+                continue;
+            }
+            selectize[0].selectize.addOptionGroup(optgroup,window.conditional_options[1][optgroup]);
+        }
+        for (var i = 0; i < window.conditional_options[0].length; i++) {
+            opt = window.conditional_options[0][i];
+            selectize[0].selectize.addOption(opt);
+        }
+
+        // set selected options
+        var selected_conditions = jQuery(selectizeInput).data('conditions');
+        if (selected_conditions) {
+            for (var i = 0; i < selected_conditions.length; i++) {
+                if (typeof selectize[0].selectize.options[selected_conditions[i].value] === 'undefined') {
+                    selectize[0].selectize.addOption(selected_conditions[i]);
+                }
+                selectize[0].selectize.addItem(selected_conditions[i].value,true);
+            }
+        }
     }
 
-
     // unload condition selectize for editor
-    var unloadConditionSelect = function(editor_id) {
-        if (jQuery('.conditions select',jQuery('#ccss_editor_' + editor_id)).length === 0) {
+    window.unloadConditionSelect = function(selectizeInput) {
+        if (jQuery(selectizeInput).length === 0) {
             return;
         }
 
-        var selected = jQuery('.conditions select',jQuery('#ccss_editor_' + editor_id))[0].selectize.getValue();
+        var selectize = jQuery(selectizeInput)[0].selectize;
+        var selected = selectize.getValue().split(selectize.settings.delimiter);
+
+        var conditions = [];
+        if (selected instanceof Array) {
+            var keys = ['value','title','optgroup','class'];
+            var kl = keys.length;
+            var l = selected.length;
+            for (var i = 0; i < l; i++) {
+                if (selectize.options[selected[i]]) {
+                    var opt = selectize.options[selected[i]];
+                    var value = {};
+                    for (var k = 0; k < kl; k++) {
+                        if (typeof opt[keys[k]] !== 'undefined') {
+                            value[keys[k]] = opt[keys[k]];
+                        }
+                    }
+                    conditions.push(value);
+                }
+            }
+        }
 
         // update selected conditions parameter
-        jQuery('.conditions select',jQuery('#ccss_editor_' + editor_id)).data('conditions', JSON.stringify(selected));
+        jQuery(selectizeInput).data('conditions', conditions);
 
-        jQuery('.conditions select',jQuery('#ccss_editor_' + editor_id))[0].selectize.destroy();
-        jQuery('.conditions select',jQuery('#ccss_editor_' + editor_id)).empty();
-
-        // set selected options
-        var option;
-        for (var i = 0; i < selected.length; i++) {
-            option = jQuery('<option />');
-            option.val(selected[i]);
-            option.attr('selected', true);
-            jQuery('.conditions select',jQuery('#ccss_editor_' + editor_id)).append(option);
-        }
+        selectize.destroy();
     }
 
     if (jQuery('.criticalcss-edit-header').length > 0) {
@@ -255,7 +293,7 @@ jQuery(function() {
                         }
 
                         // unload selectize
-                        unloadConditionSelect(editor_id);
+                        unloadConditionSelect(jQuery('.conditions input[rel="conditions"]',jQuery('#ccss_editor_' + editor_id)));
 
                         jQuery('#ccss_editor_' + editor_id).hide();
 
@@ -268,7 +306,7 @@ jQuery(function() {
                         }
 
                         // load selectize
-                        loadConditionSelect(editor_id);
+                        loadConditionSelect(jQuery('.conditions input[rel="conditions"]',jQuery('#ccss_editor_' + editor_id)));
 
                     }
 
@@ -286,7 +324,7 @@ jQuery(function() {
         jQuery('.criticalcss-edit-header').each(function(i, header) {
             if (jQuery('.item-delete',jQuery(header)).length > 0) {
 
-                var ccss_id = jQuery(header).attr('rel');
+                var ccss_file = jQuery(header).data('file');
 
                 jQuery('.item-delete',jQuery(header)).on('click', function(e) {
 
@@ -300,8 +338,8 @@ jQuery(function() {
                         form.attr('method','post');
                         form.attr('action',jQuery('#abtf_settings_form').data('delccss'));
 
-                        var input = jQuery('<input type="hidden" name="id" />');
-                        input.val(ccss_id);
+                        var input = jQuery('<input type="hidden" name="file" />');
+                        input.val(ccss_file);
                         form.append(input);
 
                         var input = jQuery('<input type="hidden" name="_wpnonce" />');

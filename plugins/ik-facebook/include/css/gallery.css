@@ -1,0 +1,90 @@
+/*
+This file is part of WP Social.
+
+WP Social is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+WP Social is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with WP Social.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
+.ik_fb_gallery_standard{
+	display: block;
+    overflow: hidden;
+}
+
+.ik_fb_gallery_standard_title{
+	display: block;
+}
+
+.ik_fb_gallery_item {
+    background-color: #eeeeee;
+    border-radius: 5px;
+    display: inline-block;
+    margin: 0 8px 8px 0;
+    padding: 10px !important;
+    vertical-align: top;
+}
+
+img.ik_fb_standard_image{
+    height: auto;
+	margin: 0 0 8px;
+    max-width: 100%;
+}
+
+p.ik_fb_standard_image_name {
+    font-size: 12px !important;
+    line-height: 1.5em !important;
+    width: auto !important;
+}
+
+.ik_fb_gallery_2048x1152{
+	width: 1152px;
+	overflow: hidden;
+}
+
+.ik_fb_gallery_960x540{
+	width: 540px;
+	overflow: hidden;
+}
+
+.ik_fb_gallery_720x405{
+	width: 405px;
+	overflow: hidden;
+}
+
+.ik_fb_gallery_600x337{
+	width: 337px;
+	overflow: hidden;
+}
+
+.ik_fb_gallery_480x270{
+	width: 270px;
+	overflow: hidden;
+}
+
+.ik_fb_gallery_320x180{
+	width: 180px;
+	overflow: hidden;
+}
+
+.ik_fb_gallery_130x73{
+	width: 73px;
+	overflow: hidden;
+}
+
+#TB_caption {
+    height: auto !important;
+	font-size: 12px;
+}
+
+#TB_closeWindowButton{
+    bottom: 0;
+}

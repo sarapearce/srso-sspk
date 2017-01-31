@@ -1,0 +1,313 @@
+.ikfb_settings form > h3 {
+    border-bottom: 1px solid #ccc;
+    font-size: 24px;
+    margin-top: 30px;
+    padding-bottom: 10px;
+}
+
+.ikfb_settings td h4 {
+    border-bottom: 1px solid #ccc;
+    font-size: 24px;
+    margin: 0 0 0 -10px;
+    padding-bottom: 10px;
+}
+
+.ikfb_settings td .section_intro {
+    margin-left: -10px;
+    padding-top: 10px;
+}
+
+.ikfb_settings .app_id_callout {
+	background-color: white;
+	border: 1px solid green;
+	box-shadow: -1px 1px 0px lightgreen;
+	padding: 5px 15px 5px;
+	margin: 20px 0;
+}
+
+.ikfb_settings #plugin_status_table {
+    border-top: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+	margin-bottom: 20px;
+	width: 800px;
+}
+
+.ikfb_settings #plugin_status_table tr.success td {
+	background-color: white;
+}
+
+.ikfb_settings #plugin_status_table tr.fail td {
+	background-color: lightpink;
+}
+
+
+.ikfb_settings #plugin_status_table td {
+    border-bottom: 1px solid #ccc;
+    border-right: 1px solid #ccc;	
+	padding: 10px 10px;
+	font-weight: bold;
+}
+
+.ikfb_settings #plugin_status_table td:first-child {
+	text-align: center;
+	width: 30px;
+}
+
+.ikfb_settings #plugin_status_table td:first-child img {	
+	height: auto;
+	width: 24px;
+}
+
+.ikfb_settings .alert_important {
+	background-color: orangered;
+	border-radius: 4px;
+    color: white;
+    padding: 15px;
+}
+
+.ikfb_settings .alert_important strong {
+	border-bottom: 1px solid salmon;
+    display: block;
+    margin-bottom: 7px;
+    padding-bottom: 6px;
+}
+
+/* Styles for Settings Fields */
+.ikfb_settings .textarea_wrapper textarea {
+	height: 250px;
+	width: 100%;
+}
+
+/* Gold Plugins Settings Page Styles */
+.gold_plugins_settings form > h3 {
+	font-size: 24px;
+	margin-top: 30px;
+}
+.gold_plugins_settings td h4 {
+	border-bottom: 1px solid #ccc;
+	font-size: 24px;
+	margin: 0 0 0 -10px;
+	padding-bottom: 10px;
+}
+.gold_plugins_settings td .section_intro {
+	margin-left: -10px;
+	padding-top: 10px;
+}
+.gold_plugins_settings .app_id_callout {
+	background-color: white;
+	border: 1px solid green;
+	box-shadow: -1px 1px 0px lightgreen;
+	padding: 5px 15px 5px;
+	margin: 20px 0;
+}
+.gold_plugins_settings #plugin_status_table {
+	border-top: 1px solid #ccc;
+	border-left: 1px solid #ccc;
+	margin-bottom: 20px;
+	width: 800px;
+}
+.gold_plugins_settings #plugin_status_table tr.success td {
+	background-color: white;
+}
+.gold_plugins_settings #plugin_status_table tr.fail td {
+	background-color: lightpink;
+}
+.gold_plugins_settings #plugin_status_table td {
+	border-bottom: 1px solid #ccc;
+	border-right: 1px solid #ccc;
+	padding: 10px 10px;
+	font-weight: bold;
+}
+.gold_plugins_settings #plugin_status_table td:first-child {
+	text-align: center;
+	width: 30px;
+}
+.gold_plugins_settings #plugin_status_table td:first-child img {
+	height: auto;
+	width: 24px;
+}
+.gold_plugins_settings .alert_important {
+	background-color: orangered;
+	border-radius: 4px;
+	color: white;
+	padding: 15px;
+}
+.gold_plugins_settings .alert_important strong {
+	border-bottom: 1px solid salmon;
+	display: block;
+	margin-bottom: 7px;
+	padding-bottom: 6px;
+}
+@media only screen and (min-width: 1074px) {
+	.gold_plugins_settings.not-pro {
+		padding-right: 300px;
+		position: relative;
+	}
+}
+
+.gold_plugins_settings .label_text {
+    display: block;
+    margin-left: 26px;
+}
+
+.gold_plugins_settings #message {
+    margin: 20px 0;
+}
+
+/* API Key boxes */
+.gold_plugins_settings .plugin_is_registered {
+	box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
+	color: green;
+	font-weight: bold;
+}
+.gold_plugins_settings .plugin_is_not_registered {
+	background-color: white;
+	border-left: 6px solid orangered;
+	box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
+	color: orangered;
+	font-weight: bold;
+	padding: 10px 15px;
+}
+.gold_plugins_settings .plugin_is_not_registered a {
+	color: #0074a2;
+	text-decoration: underline;
+}
+
+/* Styles for Settings Fields */
+.gold_plugins_settings .textarea_wrapper textarea {
+	height: 250px;
+	width: 100%;
+}
+
+/* 4.15.15 */
+#wpcontent {
+    height: auto;
+}
+
+.ikfb_settings legend {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.ikfb_settings fieldset {
+    border: 1px solid #999;
+    margin: 20px;
+    padding: 20px;
+}
+
+#ui-datepicker-div {
+	display: none;
+}
+
+/* account for top bar covering the headings when jumping to anchors */
+#ikfb_example_shortcodes h3 {
+	padding-top: 50px;
+	margin-top: -30px;
+}
+
+/* Inline menus (e.g., above Example Shortcodes section */
+.gp_inline_menu > li {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+
+div.gp_updated {
+    background: #fff none repeat scroll 0 0;
+    border-left: 4px solid green;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
+    margin: 20px 0px 10px 0;
+    padding: 1px 12px;
+}
+div.gp_error {
+    background: #fff none repeat scroll 0 0;
+    border-left: 4px solid red;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
+    margin: 20px 0px 10px 0;
+    padding: 1px 12px;
+}
+
+#wpbody-content > .gp_updated,
+#wpbody-content > .gp_error {
+    margin-right: 10px;
+}
+
+.ajax_response_message {
+    color: forestgreen;
+    font-size: 14px;
+    font-style: italic;
+}
+
+.wp-admin .ikfb_settings select {
+    height: 28px;
+    line-height: 28px;
+    margin: 1px;
+    padding: 2px;
+    vertical-align: top;
+}
+
+/* typography cleanup */
+.bikeshed .select_wrapper {
+    margin-bottom: 6px;
+}
+
+/* galahad */
+.wp_social_support_button {
+    border: 1px solid #999;
+    border-radius: 5px;
+    cursor: pointer;
+    display: inline-block;
+    margin: 5px 0 0;
+    padding: 10px;
+    text-decoration: none;
+}
+/* GP Support Form CSS */
+.gp_support_form_wrapper label {
+    display: block;
+    font-weight: bold;
+    margin: 10px 0 2px;
+}
+.gp_support_form_wrapper .form_field {
+    margin: 10px 0;
+}
+.gp_support_form_wrapper {
+    margin: 20px 0;
+}
+.help_box {
+    margin: 25px 0;
+}
+.help_box > p {
+    margin: 0 0 1em;
+}
+.gold_plugins_settings .button {
+    white-space: normal;
+}
+.gold_plugins_settings .label_text {
+    display: block;
+    margin-left: 26px;
+}
+div.gp_updated {
+    background: #fff none repeat scroll 0 0;
+    border-left: 4px solid green;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
+    margin: 20px 0px 10px 0;
+    padding: 1px 12px;
+}
+div.gp_error {
+    background: #fff none repeat scroll 0 0;
+    border-left: 4px solid red;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
+    margin: 20px 0px 10px 0;
+    padding: 1px 12px;
+}
+
+#wpbody-content > .gp_updated,
+#wpbody-content > .gp_error {
+    margin-right: 10px;
+}
+
+.ajax_response_message {
+    color: forestgreen;
+    font-size: 14px;
+    font-style: italic;
+}

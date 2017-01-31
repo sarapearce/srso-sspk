@@ -1,0 +1,1214 @@
+# Copyright (C) 2016 ThemeGrill
+# This file is distributed under the GNU General Public License v3 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: eStore 1.1.2\n"
+"Report-Msgid-Bugs-To: themegrill@gmail.com\n"
+"POT-Creation-Date: 2016-09-02 11:15:50+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2016-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: ThemeGrill <themegrill@gmail.com>\n"
+"X-Generator: grunt-wp-i18n 0.5.4\n"
+
+#: 404.php:21 404.php:34
+msgid "404"
+msgstr ""
+
+#: 404.php:36
+msgid "error"
+msgstr ""
+
+#: 404.php:39
+msgid "Oops! That page can&rsquo;t be found."
+msgstr ""
+
+#: 404.php:42
+msgid "It looks like nothing was found at this location. Try the search below."
+msgstr ""
+
+#: comments.php:42 comments.php:63
+msgid "Comment navigation"
+msgstr ""
+
+#: comments.php:45 comments.php:66
+msgid "Older Comments"
+msgstr ""
+
+#: comments.php:46 comments.php:67
+msgid "Newer Comments"
+msgstr ""
+
+#: comments.php:79
+msgid "Comments are closed."
+msgstr ""
+
+#: footer.php:18
+msgid "Theme: %1$s by %2$s."
+msgstr ""
+
+#: footer.php:20
+msgid "Proudly powered by %s."
+msgstr ""
+
+#: functions.php:60
+msgid "Primary Menu"
+msgstr ""
+
+#: functions.php:61
+msgid "Header Top Bar Menu"
+msgstr ""
+
+#: functions.php:62
+msgid "Secondary Menu"
+msgstr ""
+
+#: header.php:29
+msgid "Skip to content"
+msgstr ""
+
+#: header.php:62 header.php:203
+msgid "My Account"
+msgstr ""
+
+#: header.php:65
+msgid "Login/Register"
+msgstr ""
+
+#: header.php:65
+msgid "Login/ Register"
+msgstr ""
+
+#: header.php:151 inc/woocommerce.php:469 woocommerce/cart/cart-totals.php:99
+#: woocommerce/cart/cart-totals.php:100
+msgid "Total"
+msgstr ""
+
+#: header.php:206
+msgid "Login / Register"
+msgstr ""
+
+#: inc/admin/class-estore-admin.php:36 inc/admin/class-estore-admin.php:113
+msgid "About"
+msgstr ""
+
+#: inc/admin/class-estore-admin.php:74
+msgid "Action failed. Please refresh the page and retry."
+msgstr ""
+
+#: inc/admin/class-estore-admin.php:77
+msgid "Cheatin&#8217; huh?"
+msgstr ""
+
+#: inc/admin/class-estore-admin.php:90
+msgid "Dismiss"
+msgstr ""
+
+#: inc/admin/class-estore-admin.php:91
+msgid ""
+"Welcome! Thank you for choosing eStore! To fully take advantage of the best "
+"our theme can offer please make sure you visit our %swelcome page%s."
+msgstr ""
+
+#: inc/admin/class-estore-admin.php:93
+msgid "Get started with eStore"
+msgstr ""
+
+#: inc/admin/class-estore-admin.php:115
+msgid "%s"
+msgstr ""
+
+#: inc/admin/class-estore-admin.php:128 inc/customizer.php:40
+msgid "Theme Info"
+msgstr ""
+
+#: inc/admin/class-estore-admin.php:130 inc/customizer.php:52
+msgid "View Demo"
+msgstr ""
+
+#: inc/admin/class-estore-admin.php:132 inc/admin/class-estore-admin.php:202
+#: inc/admin/class-estore-admin.php:511 inc/customizer.php:36
+msgid "View Pro"
+msgstr ""
+
+#: inc/admin/class-estore-admin.php:134 inc/customizer.php:56
+msgid "Rate this theme"
+msgstr ""
+
+#: inc/admin/class-estore-admin.php:142
+msgid "Supported Plugins"
+msgstr ""
+
+#: inc/admin/class-estore-admin.php:145
+msgid "Free Vs Pro"
+msgstr ""
+
+#: inc/admin/class-estore-admin.php:148
+msgid "Changelog"
+msgstr ""
+
+#: inc/admin/class-estore-admin.php:182
+msgid "Theme Customizer"
+msgstr ""
+
+#: inc/admin/class-estore-admin.php:183
+msgid "All Theme Options are available via Customize screen."
+msgstr ""
+
+#: inc/admin/class-estore-admin.php:184
+msgid "Customize"
+msgstr ""
+
+#: inc/admin/class-estore-admin.php:188 inc/admin/class-estore-admin.php:190
+#: inc/customizer.php:48
+msgid "Documentation"
+msgstr ""
+
+#: inc/admin/class-estore-admin.php:189
+msgid "Please view our documentation page to setup the theme."
+msgstr ""
+
+#: inc/admin/class-estore-admin.php:194
+msgid "Got theme support question?"
+msgstr ""
+
+#: inc/admin/class-estore-admin.php:195
+msgid "Please put it in our dedicated support forum."
+msgstr ""
+
+#: inc/admin/class-estore-admin.php:196
+msgid "Support Forum"
+msgstr ""
+
+#: inc/admin/class-estore-admin.php:200
+msgid "Need more features?"
+msgstr ""
+
+#: inc/admin/class-estore-admin.php:201 inc/admin/class-estore-admin.php:336
+msgid "Upgrade to PRO version for more exciting features."
+msgstr ""
+
+#: inc/admin/class-estore-admin.php:206
+msgid "Got sales related question?"
+msgstr ""
+
+#: inc/admin/class-estore-admin.php:207
+msgid "Please send it via our sales contact page."
+msgstr ""
+
+#: inc/admin/class-estore-admin.php:208
+msgid "Contact Page"
+msgstr ""
+
+#: inc/admin/class-estore-admin.php:214 inc/admin/class-estore-admin.php:222
+msgid "Translate"
+msgstr ""
+
+#: inc/admin/class-estore-admin.php:218
+msgid "Click below to translate this theme into your own language."
+msgstr ""
+
+#: inc/admin/class-estore-admin.php:234
+msgid "Return to Updates"
+msgstr ""
+
+#: inc/admin/class-estore-admin.php:234
+msgid "Return to Dashboard &rarr; Updates"
+msgstr ""
+
+#: inc/admin/class-estore-admin.php:237
+msgid "Go to Dashboard &rarr; Home"
+msgstr ""
+
+#: inc/admin/class-estore-admin.php:237
+msgid "Go to Dashboard"
+msgstr ""
+
+#: inc/admin/class-estore-admin.php:254
+msgid "View changelog below."
+msgstr ""
+
+#: inc/admin/class-estore-admin.php:306
+msgid "This theme recommends following plugins."
+msgstr ""
+
+#: inc/admin/class-estore-admin.php:308
+msgid "Social Icons"
+msgstr ""
+
+#: inc/admin/class-estore-admin.php:309 inc/admin/class-estore-admin.php:312
+msgid " by ThemeGrill"
+msgstr ""
+
+#: inc/admin/class-estore-admin.php:311
+msgid "Easy Social Sharing"
+msgstr ""
+
+#: inc/admin/class-estore-admin.php:314
+msgid "Contact Form 7"
+msgstr ""
+
+#: inc/admin/class-estore-admin.php:315
+msgid "WP-PageNavi"
+msgstr ""
+
+#: inc/admin/class-estore-admin.php:316
+msgid "WooCommerce"
+msgstr ""
+
+#: inc/admin/class-estore-admin.php:317
+msgid "YITH WooCommerce Wishlist"
+msgstr ""
+
+#: inc/admin/class-estore-admin.php:319
+msgid "WPML"
+msgstr ""
+
+#: inc/admin/class-estore-admin.php:341
+msgid "Features"
+msgstr ""
+
+#. Theme Name of the plugin/theme
+msgid "eStore"
+msgstr ""
+
+#: inc/admin/class-estore-admin.php:343
+msgid "eStore Pro"
+msgstr ""
+
+#: inc/admin/class-estore-admin.php:348
+msgid "Different Header Layouts"
+msgstr ""
+
+#: inc/admin/class-estore-admin.php:349
+msgid "Default header layout (free)"
+msgstr ""
+
+#: inc/admin/class-estore-admin.php:350
+msgid "3 different header layouts"
+msgstr ""
+
+#: inc/admin/class-estore-admin.php:353
+msgid "Google Fonts Option"
+msgstr ""
+
+#: inc/admin/class-estore-admin.php:355
+msgid "600+"
+msgstr ""
+
+#: inc/admin/class-estore-admin.php:358
+msgid "Font Size options"
+msgstr ""
+
+#: inc/admin/class-estore-admin.php:363
+msgid "Color Palette"
+msgstr ""
+
+#: inc/admin/class-estore-admin.php:364 inc/customizer.php:257
+msgid "Primary Color Option"
+msgstr ""
+
+#: inc/admin/class-estore-admin.php:365
+msgid "Multiple Color Options"
+msgstr ""
+
+#: inc/admin/class-estore-admin.php:368
+msgid "Translation Ready"
+msgstr ""
+
+#: inc/admin/class-estore-admin.php:373
+msgid "Woocommerce Compatible"
+msgstr ""
+
+#: inc/admin/class-estore-admin.php:378
+msgid "YITH Wishlist Compatible"
+msgstr ""
+
+#: inc/admin/class-estore-admin.php:383
+msgid "WPML Compatible"
+msgstr ""
+
+#: inc/admin/class-estore-admin.php:388
+msgid "RTL Support"
+msgstr ""
+
+#: inc/admin/class-estore-admin.php:393
+msgid "Footer Copyright Editor"
+msgstr ""
+
+#: inc/admin/class-estore-admin.php:398
+msgid "Footer Widgets Column"
+msgstr ""
+
+#: inc/admin/class-estore-admin.php:399 inc/admin/class-estore-admin.php:400
+msgid "1,2,3,4 Columns"
+msgstr ""
+
+#: inc/admin/class-estore-admin.php:403
+msgid "Demo Content"
+msgstr ""
+
+#: inc/admin/class-estore-admin.php:408 inc/customizer.php:44
+msgid "Support"
+msgstr ""
+
+#: inc/admin/class-estore-admin.php:409
+msgid "Forum"
+msgstr ""
+
+#: inc/admin/class-estore-admin.php:410
+msgid "Forum + Emails/Support Ticket"
+msgstr ""
+
+#: inc/admin/class-estore-admin.php:413
+msgid "Extra Options on Widgets"
+msgstr ""
+
+#: inc/admin/class-estore-admin.php:418 inc/widgets.php:267
+msgid "TG: About Widget"
+msgstr ""
+
+#: inc/admin/class-estore-admin.php:423 inc/widgets.php:154
+msgid "TG: Advertisement"
+msgstr ""
+
+#: inc/admin/class-estore-admin.php:428 inc/widgets.php:1859
+msgid "TG: Category Carousel"
+msgstr ""
+
+#: inc/admin/class-estore-admin.php:433 inc/widgets.php:2029
+msgid "TG: Category Grid"
+msgstr ""
+
+#: inc/admin/class-estore-admin.php:438 inc/widgets.php:1617
+msgid "TG: Category Slider"
+msgstr ""
+
+#: inc/admin/class-estore-admin.php:443 inc/widgets.php:1297
+msgid "TG: Featured Posts"
+msgstr ""
+
+#: inc/admin/class-estore-admin.php:448 inc/widgets.php:477
+msgid "TG: Horizontal Promo"
+msgstr ""
+
+#: inc/admin/class-estore-admin.php:453 inc/widgets.php:358
+msgid "TG: Horizontal Promo WC Category"
+msgstr ""
+
+#: inc/admin/class-estore-admin.php:458 inc/widgets.php:1457
+msgid "TG: Logo"
+msgstr ""
+
+#: inc/admin/class-estore-admin.php:463
+msgid "TG: Product grid"
+msgstr ""
+
+#: inc/admin/class-estore-admin.php:468
+msgid "TG: Logos"
+msgstr ""
+
+#: inc/admin/class-estore-admin.php:473 inc/widgets.php:781
+msgid "TG: Products Carousel"
+msgstr ""
+
+#: inc/admin/class-estore-admin.php:478
+msgid "TG: Product slider"
+msgstr ""
+
+#: inc/admin/class-estore-admin.php:483 inc/widgets.php:688
+msgid "TG: Vertical Promo"
+msgstr ""
+
+#: inc/admin/class-estore-admin.php:488 inc/widgets.php:581
+msgid "TG: Vertical Promo WC Category"
+msgstr ""
+
+#: inc/admin/class-estore-admin.php:493
+msgid "TG: Testimonials"
+msgstr ""
+
+#: inc/admin/class-estore-admin.php:498
+msgid "TG: Icon Text"
+msgstr ""
+
+#: inc/admin/class-estore-admin.php:503
+msgid "TG: Products Tab"
+msgstr ""
+
+#: inc/admin/meta-boxes.php:16 inc/admin/meta-boxes.php:18
+msgid "Select Layout"
+msgstr ""
+
+#: inc/admin/meta-boxes.php:28 inc/customizer.php:288
+msgid "Default Layout"
+msgstr ""
+
+#: inc/admin/meta-boxes.php:33 inc/widgets.php:20
+msgid "Right Sidebar"
+msgstr ""
+
+#: inc/admin/meta-boxes.php:38 inc/widgets.php:30
+msgid "Left Sidebar"
+msgstr ""
+
+#: inc/admin/meta-boxes.php:43
+msgid "No Sidebar Full Width"
+msgstr ""
+
+#: inc/admin/meta-boxes.php:48
+msgid "No Sidebar Content Centered"
+msgstr ""
+
+#: inc/customizer.php:69
+msgid "eStore Important Links"
+msgstr ""
+
+#: inc/customizer.php:86
+msgid "Important Links"
+msgstr ""
+
+#: inc/customizer.php:99
+msgid "Change Header Settings here"
+msgstr ""
+
+#: inc/customizer.php:101
+msgid "Header Options"
+msgstr ""
+
+#: inc/customizer.php:108
+msgid "Header Integrations"
+msgstr ""
+
+#: inc/customizer.php:121
+msgid "Enable Language Selection (WPML)"
+msgstr ""
+
+#: inc/customizer.php:134
+msgid "Header Logo"
+msgstr ""
+
+#: inc/customizer.php:155 inc/customizer.php:696
+msgid "Upload logo"
+msgstr ""
+
+#: inc/customizer.php:177
+msgid "Choose the required option"
+msgstr ""
+
+#: inc/customizer.php:181
+msgid "Header Logo Only"
+msgstr ""
+
+#: inc/customizer.php:182
+msgid "Header Text Only"
+msgstr ""
+
+#: inc/customizer.php:183
+msgid "Show both header logo and text"
+msgstr ""
+
+#: inc/customizer.php:184
+msgid "Disable"
+msgstr ""
+
+#: inc/customizer.php:194
+msgid "Header Top Bar"
+msgstr ""
+
+#: inc/customizer.php:212
+msgid "Activate the header top bar"
+msgstr ""
+
+#: inc/customizer.php:233
+msgid "Header Text"
+msgstr ""
+
+#: inc/customizer.php:234
+msgid "Paste the Font Awesome icon font"
+msgstr ""
+
+#: inc/customizer.php:246
+msgid "Design Related Settings"
+msgstr ""
+
+#: inc/customizer.php:248
+msgid "Design Options"
+msgstr ""
+
+#: inc/customizer.php:277
+msgid ""
+"This will reflect in links, buttons and many others. Choose a color to "
+"match your site"
+msgstr ""
+
+#: inc/customizer.php:307
+msgid ""
+"Select default layout. This layout will be reflected in whole site "
+"archives, categories, search page etc. The layout for a single post and "
+"page can be controlled from below options"
+msgstr ""
+
+#: inc/customizer.php:325
+msgid "Default Page Layout"
+msgstr ""
+
+#: inc/customizer.php:344
+msgid ""
+"Select default layout for pages. This layout will be reflected in all pages "
+"unless unique layout is set for specific page"
+msgstr ""
+
+#: inc/customizer.php:362
+msgid "Default Single Post Layout"
+msgstr ""
+
+#: inc/customizer.php:381
+msgid ""
+"Select default layout for single posts. This layout will be reflected in "
+"all single posts unless unique layout is set for specific post"
+msgstr ""
+
+#: inc/customizer.php:399
+msgid "Blog Layout"
+msgstr ""
+
+#: inc/customizer.php:416
+msgid "Choose the layout style for archive pages."
+msgstr ""
+
+#: inc/customizer.php:420
+msgid "List View"
+msgstr ""
+
+#: inc/customizer.php:421
+msgid "Grid View"
+msgstr ""
+
+#: inc/customizer.php:432
+msgid "Custom CSS"
+msgstr ""
+
+#: inc/customizer.php:452
+msgid "Write your Custom CSS here"
+msgstr ""
+
+#: inc/customizer.php:463
+msgid "Footer Widgets"
+msgstr ""
+
+#: inc/customizer.php:480
+msgid "Choose the number of widget area you want in footer"
+msgstr ""
+
+#: inc/customizer.php:484
+msgid "1 Footer Widget Area"
+msgstr ""
+
+#: inc/customizer.php:485
+msgid "2 Footer Widget Area"
+msgstr ""
+
+#: inc/customizer.php:486
+msgid "3 Footer Widget Area"
+msgstr ""
+
+#: inc/customizer.php:487
+msgid "4 Footer Widget Area"
+msgstr ""
+
+#: inc/customizer.php:497
+msgid "Some additional settings."
+msgstr ""
+
+#: inc/customizer.php:499
+msgid "Additional Options"
+msgstr ""
+
+#: inc/customizer.php:506 inc/woocommerce.php:125
+msgid "Category Color Settings"
+msgstr ""
+
+#: inc/customizer.php:529 inc/woocommerce.php:148
+msgid " %s"
+msgstr ""
+
+#: inc/customizer.php:544
+msgid "Post Meta Settings"
+msgstr ""
+
+#: inc/customizer.php:546
+msgid "Note: This will only work in single posts."
+msgstr ""
+
+#: inc/customizer.php:563
+msgid "Hide all post meta data under post title."
+msgstr ""
+
+#: inc/customizer.php:583
+msgid "Hide date under post title."
+msgstr ""
+
+#: inc/customizer.php:603
+msgid "Hide author under post title."
+msgstr ""
+
+#: inc/customizer.php:623
+msgid "Hide comment count under post title."
+msgstr ""
+
+#: inc/customizer.php:643
+msgid "Hide category under post title."
+msgstr ""
+
+#: inc/customizer.php:663
+msgid "Hide tags under post title."
+msgstr ""
+
+#: inc/customizer.php:675
+msgid "Payment Partners Logo"
+msgstr ""
+
+#: inc/estore.php:24 inc/widgets.php:1416 inc/widgets.php:2244
+msgid "0 Comment"
+msgstr ""
+
+#: inc/estore.php:24 inc/widgets.php:1416 inc/widgets.php:2244
+msgid "1 Comment"
+msgstr ""
+
+#: inc/estore.php:24 inc/widgets.php:1416 inc/widgets.php:2244
+msgid " % Comments"
+msgstr ""
+
+#: inc/estore.php:93
+msgid "Home"
+msgstr ""
+
+#: inc/estore.php:94
+msgid "Archive by Category \"%s\""
+msgstr ""
+
+#: inc/estore.php:95
+msgid "Archive for \"%s\""
+msgstr ""
+
+#: inc/estore.php:96
+msgid "Search Results for \"%s\" query"
+msgstr ""
+
+#: inc/estore.php:97
+msgid "Posts Tagged \"%s\""
+msgstr ""
+
+#: inc/estore.php:98
+msgid "Articles Posted by %s"
+msgstr ""
+
+#: inc/estore.php:99
+msgid "Error 404"
+msgstr ""
+
+#: inc/estore.php:201 inc/widgets.php:286
+msgid "Page"
+msgstr ""
+
+#: inc/widgets.php:40
+msgid "Header Right Sidebar"
+msgstr ""
+
+#: inc/widgets.php:51
+msgid "Front Page: Slider Area"
+msgstr ""
+
+#: inc/widgets.php:62
+msgid "Front Page: Area beside Slider"
+msgstr ""
+
+#: inc/widgets.php:73
+msgid "Front Page Sidebar"
+msgstr ""
+
+#: inc/widgets.php:86
+msgid "Footer Sidebar 1"
+msgstr ""
+
+#: inc/widgets.php:88 inc/widgets.php:99 inc/widgets.php:111
+#: inc/widgets.php:123
+msgid "Show widgets at Footer section"
+msgstr ""
+
+#: inc/widgets.php:97
+msgid "Footer Sidebar 2"
+msgstr ""
+
+#: inc/widgets.php:109
+msgid "Footer Sidebar 3"
+msgstr ""
+
+#: inc/widgets.php:121
+msgid "Footer Sidebar 4"
+msgstr ""
+
+#: inc/widgets.php:148
+msgid "Add your Advertisement here"
+msgstr ""
+
+#: inc/widgets.php:170 inc/widgets.php:281 inc/widgets.php:801
+#: inc/widgets.php:1031 inc/widgets.php:1316 inc/widgets.php:1489
+#: inc/widgets.php:1879 inc/widgets.php:2053
+msgid "Title:"
+msgstr ""
+
+#: inc/widgets.php:173
+msgid "Add your Advertisement Images Here. Any size supported."
+msgstr ""
+
+#: inc/widgets.php:175
+msgid "Advertisement Image Link "
+msgstr ""
+
+#: inc/widgets.php:179
+msgid "Advertisement Image "
+msgstr ""
+
+#: inc/widgets.php:189 inc/widgets.php:1055 inc/widgets.php:1513
+#: inc/widgets.php:2077
+msgid "Upload Image"
+msgstr ""
+
+#: inc/widgets.php:261
+msgid "Show your about page. Suitable for Click to Action."
+msgstr ""
+
+#: inc/widgets.php:285
+msgid "Select a page to display Title, Excerpt and Featured image."
+msgstr ""
+
+#: inc/widgets.php:353
+msgid ""
+"Display WooCommerce Product Categories with featured image in horizontal "
+"layout."
+msgstr ""
+
+#: inc/widgets.php:375 inc/widgets.php:598
+msgid "Category"
+msgstr ""
+
+#: inc/widgets.php:472
+msgid "Display some pages with featured image in horizontal layout."
+msgstr ""
+
+#: inc/widgets.php:494 inc/widgets.php:705
+msgid "Pages"
+msgstr ""
+
+#: inc/widgets.php:576
+msgid ""
+"Display WooCommerce Product Categories in vertical layout with featured "
+"image."
+msgstr ""
+
+#: inc/widgets.php:683
+msgid "Display some pages in vertical layout with featured image."
+msgstr ""
+
+#: inc/widgets.php:775
+msgid "Show WooCommerce Featured Products Carousel."
+msgstr ""
+
+#: inc/widgets.php:805 inc/widgets.php:1035 inc/widgets.php:1883
+#: inc/widgets.php:2057
+msgid "Description:"
+msgstr ""
+
+#: inc/widgets.php:809
+msgid "Product Source:"
+msgstr ""
+
+#: inc/widgets.php:811
+msgid "Latest Products"
+msgstr ""
+
+#: inc/widgets.php:812
+msgid "Featured Products"
+msgstr ""
+
+#: inc/widgets.php:813
+msgid "On Sale Products"
+msgstr ""
+
+#: inc/widgets.php:814
+msgid "Certain Category"
+msgstr ""
+
+#: inc/widgets.php:819 inc/widgets.php:1066 inc/widgets.php:2088
+msgid "Category:"
+msgstr ""
+
+#: inc/widgets.php:834 inc/widgets.php:1080
+msgid "Number of Products:"
+msgstr ""
+
+#: inc/widgets.php:948 inc/widgets.php:1202 inc/woocommerce.php:302
+#: inc/woocommerce.php:316
+msgid "Sale!"
+msgstr ""
+
+#: inc/widgets.php:967 inc/widgets.php:1214
+msgid "Rated %s out of 5"
+msgstr ""
+
+#: inc/widgets.php:972
+msgid "Price:"
+msgstr ""
+
+#: inc/widgets.php:979 inc/widgets.php:1225 inc/widgets.php:1261
+msgid "Add to Wishlist"
+msgstr ""
+
+#: inc/widgets.php:1001
+msgid "Show WooCommerce Featured Products Grid."
+msgstr ""
+
+#: inc/widgets.php:1007
+msgid "TG: Product Grid"
+msgstr ""
+
+#: inc/widgets.php:1038 inc/widgets.php:2060
+msgid "Add your Category Image here."
+msgstr ""
+
+#: inc/widgets.php:1041 inc/widgets.php:2063
+msgid "Image Link"
+msgstr ""
+
+#: inc/widgets.php:1045 inc/widgets.php:2067
+msgid "Category Image"
+msgstr ""
+
+#: inc/widgets.php:1058 inc/widgets.php:2080
+msgid "Choose where to align your image."
+msgstr ""
+
+#: inc/widgets.php:1061 inc/widgets.php:2083
+msgid "Right Align"
+msgstr ""
+
+#: inc/widgets.php:1062 inc/widgets.php:2084
+msgid "Left Align"
+msgstr ""
+
+#: inc/widgets.php:1155 inc/widgets.php:2170
+#: page-templates/template-wc-collection.php:60
+msgid "View all"
+msgstr ""
+
+#: inc/widgets.php:1182
+msgid "Hot products"
+msgstr ""
+
+#: inc/widgets.php:1216
+msgid "out of %s5%s"
+msgstr ""
+
+#: inc/widgets.php:1254 woocommerce/loop/price.php:26
+msgid "Price: "
+msgstr ""
+
+#: inc/widgets.php:1291
+msgid "Display latest posts or posts of specific category"
+msgstr ""
+
+#: inc/widgets.php:1320 inc/widgets.php:1633 inc/widgets.php:1887
+msgid "Number of posts to display:"
+msgstr ""
+
+#: inc/widgets.php:1325 inc/widgets.php:1638 inc/widgets.php:1892
+msgid "Show latest Posts"
+msgstr ""
+
+#: inc/widgets.php:1326 inc/widgets.php:1639 inc/widgets.php:1893
+msgid "Show posts from a category"
+msgstr ""
+
+#: inc/widgets.php:1330 inc/widgets.php:1643 inc/widgets.php:1759
+#: inc/widgets.php:1897
+msgid "Select category"
+msgstr ""
+
+#: inc/widgets.php:1403
+msgid "Blog Image"
+msgstr ""
+
+#: inc/widgets.php:1428 template-parts/content.php:38
+msgid "Read more"
+msgstr ""
+
+#: inc/widgets.php:1451
+msgid "Add your clients/brand logo images here"
+msgstr ""
+
+#: inc/widgets.php:1492
+msgid "Add your clients/brands logo Here"
+msgstr ""
+
+#: inc/widgets.php:1499
+msgid "Logo Link "
+msgstr ""
+
+#: inc/widgets.php:1503
+msgid "Logo Image "
+msgstr ""
+
+#: inc/widgets.php:1610
+msgid ""
+"Display latest posts or posts of specific category, which will be used as "
+"the slider."
+msgstr ""
+
+#: inc/widgets.php:1706 inc/widgets.php:2003
+msgid "Read More"
+msgstr ""
+
+#: inc/widgets.php:1726
+msgid "Display WooCommerce Product from category."
+msgstr ""
+
+#: inc/widgets.php:1733
+msgid "TG: Product Slider"
+msgstr ""
+
+#: inc/widgets.php:1749
+msgid "Number of products to display:"
+msgstr ""
+
+#: inc/widgets.php:1754
+msgid "Show Latest Products"
+msgstr ""
+
+#: inc/widgets.php:1755
+msgid "Show Products from a category"
+msgstr ""
+
+#: inc/widgets.php:1832
+msgid "Add to Cart"
+msgstr ""
+
+#: inc/widgets.php:1852
+msgid ""
+"Display latest posts or posts of specific category, which will be used as "
+"the carousel."
+msgstr ""
+
+#: inc/widgets.php:2023
+msgid "Show Featured Category Posts in Grid Layout."
+msgstr ""
+
+#: inc/widgets.php:2101
+msgid "Number of Posts:"
+msgstr ""
+
+#: inc/woocommerce.php:60
+msgid "Shop Sidebar"
+msgstr ""
+
+#: inc/woocommerce.php:62
+msgid "Widget area for WooCommerce Pages."
+msgstr ""
+
+#: inc/woocommerce.php:86
+msgid "WooCommerce Settings"
+msgstr ""
+
+#: inc/woocommerce.php:88
+msgid "Change WooCommerce settings related to theme."
+msgstr ""
+
+#: inc/woocommerce.php:100
+msgid "Enable My Account Button"
+msgstr ""
+
+#: inc/woocommerce.php:116
+msgid "Enable Currency Symbol"
+msgstr ""
+
+#: inc/woocommerce.php:163
+msgid "Archive Page Layout"
+msgstr ""
+
+#: inc/woocommerce.php:182
+msgid ""
+"This layout will be reflected in archives, categories, search page etc. of "
+"WooCommerce."
+msgstr ""
+
+#: inc/woocommerce.php:200
+msgid "Product Page Layout"
+msgstr ""
+
+#: inc/woocommerce.php:219
+msgid "This layout will be reflected in product page of WooCommerce."
+msgstr ""
+
+#: navigation.php:24 navigation.php:36
+msgid "&larr; Previous"
+msgstr ""
+
+#: navigation.php:25 navigation.php:37
+msgid "Next &rarr;"
+msgstr ""
+
+#: no-results.php:18 template-parts/content-none.php:22
+msgid "Ready to publish your first post? <a href=\"%1$s\">Get started here</a>."
+msgstr ""
+
+#: no-results.php:23 template-parts/content-none.php:26
+msgid ""
+"Sorry, but nothing matched your search terms. Please try again with some "
+"different keywords."
+msgstr ""
+
+#: no-results.php:28 template-parts/content-none.php:31
+msgid ""
+"It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps "
+"searching can help."
+msgstr ""
+
+#: template-parts/content-none.php:16
+msgid "Nothing Found"
+msgstr ""
+
+#: template-parts/content-page.php:28 template-parts/content-single.php:43
+msgid "Pages:"
+msgstr ""
+
+#: template-parts/content-single.php:36
+msgid "Tagged on: "
+msgstr ""
+
+#: woocommerce/cart/cart-totals.php:36
+msgid "Cart Totals"
+msgstr ""
+
+#: woocommerce/cart/cart-totals.php:41 woocommerce/cart/cart-totals.php:42
+msgid "Subtotal"
+msgstr ""
+
+#: woocommerce/cart/cart-totals.php:63 woocommerce/cart/cart-totals.php:64
+msgid "Shipping"
+msgstr ""
+
+#: woocommerce/cart/cart-totals.php:78
+msgid "estimated for %s"
+msgstr ""
+
+#: woocommerce/cart/cross-sells.php:47
+msgid "You may be interested in&hellip;"
+msgstr ""
+
+#: woocommerce/checkout/form-billing.php:28
+msgid "Billing &amp; Shipping"
+msgstr ""
+
+#: woocommerce/checkout/form-billing.php:32
+msgid "Billing Details"
+msgstr ""
+
+#: woocommerce/checkout/form-billing.php:56
+msgid "Create an account?"
+msgstr ""
+
+#: woocommerce/checkout/form-billing.php:67
+msgid ""
+"Create an account by entering the information below. If you are a returning "
+"customer please login at the top of the page."
+msgstr ""
+
+#: woocommerce/checkout/form-checkout.php:28
+msgid "You must be logged in to checkout."
+msgstr ""
+
+#: woocommerce/checkout/form-checkout.php:56
+msgid "Your order"
+msgstr ""
+
+#: woocommerce/checkout/form-login.php:28
+msgid "Returning customer?"
+msgstr ""
+
+#: woocommerce/checkout/form-login.php:29
+msgid "Click here to login"
+msgstr ""
+
+#: woocommerce/checkout/form-login.php:36
+msgid ""
+"If you have shopped with us before, please enter your details in the boxes "
+"below. If you are a new customer, please proceed to the Billing &amp; "
+"Shipping section."
+msgstr ""
+
+#: woocommerce/single-product/related.php:51
+msgid "Related Products"
+msgstr ""
+
+#. Theme URI of the plugin/theme
+msgid "http://www.themegrill.com/themes/estore/"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid ""
+"eStore is a clean, beautiful and fully customizable responsive WooCommerce "
+"WordPress theme. This theme packs many premium features and several custom "
+"widgets which helps making your online store professional and well "
+"organized. Theme is fully compatible with WooCommerce and YITH WooCommerce "
+"Wishlist plugins. As an online store owner, attracting customers and "
+"selling products will be lot easier with this theme. Check the demo here: "
+"http://demo.themegrill.com/estore and get free support here: "
+"http://themegrill.com/support-forum/forum/estore-free/"
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "ThemeGrill"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "http://www.themegrill.com"
+msgstr ""
+
+#. Template Name of the plugin/theme
+msgid "eStore Home"
+msgstr ""
+
+#. Template Name of the plugin/theme
+msgid "WooCommerce Category Collection"
+msgstr ""
+
+#: comments.php:33
+msgctxt "comments title"
+msgid "One thought on &ldquo;%2$s&rdquo;"
+msgid_plural "%1$s thoughts on &ldquo;%2$s&rdquo;"
+msgstr[0] ""
+msgstr[1] ""
+
+#: navigation.php:44
+msgctxt "Previous post link"
+msgid "&larr;"
+msgstr ""
+
+#: navigation.php:45
+msgctxt "Next post link"
+msgid "&rarr;"
+msgstr ""
+
+#: searchform.php:11
+msgctxt "placeholder"
+msgid "Search &hellip;"
+msgstr ""
+
+#: searchform.php:12
+msgctxt "submit button"
+msgid "Search"
+msgstr ""

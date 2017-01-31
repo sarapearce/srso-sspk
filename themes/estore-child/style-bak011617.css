@@ -1,0 +1,231 @@
+/*
+ Theme Name:   estore child
+ Theme URI:    http://client-3.sarapearce.net/wp-content/themes/estore-child/
+ Description:  Estore Child Theme
+ Author:       Sara Pearce
+ Author URI:   http://sarapearce.net
+ Template:     estore
+ Version:      1.0.0
+ License:      GNU General Public License v2 or later
+ License URI:  http://www.gnu.org/licenses/gpl-2.0.html
+ Tags:         light, dark, two-columns, right-sidebar, responsive-layout
+ Text Domain:  estore-child
+*/
+
+ul {
+    list-style: none;
+}
+.widget_rss a::before {
+    content: "";
+}
+
+.rss-widget-icon {
+    visibility: hidden;
+}
+
+#top-footer {
+    background: #424242;
+}
+
+#top-footer > * {
+    color: white;
+}
+
+/*not sure why the style above didnt apply to a and span, so here its more explicit*/
+#top-footer .widget-title {
+    color: white;
+}
+
+.search-wrapper {
+    border-left: 1px solid #e5e5e5;
+    border-right: 1px solid #e5e5e5;
+}
+
+footer {
+    background: #424242;
+}
+
+.user-wrapper {
+    visibility: hidden 
+}
+
+#text-5 > .widget-title {
+    text-align: center;
+    font-size: 32px;
+    font-style: italic;
+}
+
+#site-navigation {
+    padding-left: 6%;
+}
+
+.blog-section {
+    background: none;
+}
+
+.post-grid-title {
+    text-align: center;
+    font-style: italic;
+    font-size: 32px;
+}
+
+.mag-cover-img {
+    margin-top: 41px;
+}
+
+#text-5 > .widget-title {
+    text-align: center;
+    font-size: 32px;
+    font-style: italic;
+}
+
+.widget-title span {
+    border-bottom: 0px solid white;
+}
+
+.menu-item-object-page a {
+    border-bottom: 1px solid #d6d6d6;
+    font-size: 30px;
+}
+
+.widget .social-icons-lists.show-icons-label li.social-icons-list-item {
+    display: inline;
+}
+
+
+#recent-posts-2 span {
+    padding-top: 20px;
+    color: black;
+    font-style: italic;
+}
+
+.sidebar_slider {
+    text-align: center;
+    margin-top: 45px;
+}
+
+/*.social-icons-lists {
+    padding-top: 44px;
+}*/
+
+.widget_nav_menu li a {
+    color: white;
+}
+
+#text-3 .textwidget {
+    font-size: 24px;
+}
+
+.inline {
+    display: inline;
+    float: right;
+}
+
+.category-toggle i {
+    visibility: hidden;
+}
+
+.category-menu .category-toggle {
+    text-align: center;
+    background: white;
+    color: black;
+    font-size: 20px;
+    font-style: italic;
+}
+
+.category-menu .category-toggle:hover {
+    background: #dc495e;
+    color: white;
+}
+
+.bottom-footer {
+    text-align: center;
+    background: #d4d3d5;
+    color: black;
+    padding-top: 0px;
+}
+
+.founders {
+    float: right; 
+    width: 40%;
+}
+
+@media only screen and (max-width: 1005px) {
+    .founders {
+        width: 100%;
+        margin-top: 55px;
+    }
+
+    .founders-img {
+        margin-left: 17%;
+    }
+    
+    .cta-btn {
+        margin-left: 20%;
+    }
+
+}
+
+.copyright {
+    padding-top: 0px !important;
+}
+
+#themegrill_social_icons-5 .widget-title {
+    color: white;
+    border-bottom: 0px solid white;
+}
+
+.mag-cover-img {
+    width: 75%;
+    margin-left: 12%;
+}
+
+@media screen and (max-width: 768px ) {
+    .mag-cover-img {
+        width: 100%;
+        margin-left: 0;
+    }
+}
+
+#nav_menu-3 {
+    margin-left: 16%;
+}
+
+#themegrill_social_icons-5 {
+    margin-top: 17px;
+}
+
+.logo-wrapper {
+    margin-top: 0;
+}
+
+.read-more a {
+    background: none !important;
+}
+
+.rt-holder .overlay {
+    visibility: hidden;
+}
+
+.rt-holder img {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.search-user-block {
+    visibility: hidden;
+}
+
+#primary-menu a {
+    text-align: center;
+}
+
+.category-menu {
+    background: white;
+}
+
+@media (max-width: 979px) {
+.category-menu {
+    background: white;
+}
+}

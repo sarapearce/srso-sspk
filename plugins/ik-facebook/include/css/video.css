@@ -1,0 +1,15 @@
+/* Video */
+.ik_fb_facebook_video > iframe {
+    display: block;
+    height: 100%;
+    min-height: 264px;
+}
+#ik_fb_widget li.ik_fb_feed_item p.ik_fb_facebook_video{
+	margin: 10px 0;
+}
+.embedded_ikfb_video{
+	margin: 20px 0;
+}
+.ik_fb_item_message .embedded_ikfb_video{
+	display: none;
+}
